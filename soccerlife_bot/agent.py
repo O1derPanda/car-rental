@@ -24,7 +24,7 @@ class SoccerLifeAgent:
                 }
             )
 
-        self.model = os.getenv("LLM_MODEL", "minimax/minimax-m3:free")
+        self.model = os.getenv("LLM_MODEL", "google/gemini-2.5-flash")
 
         self.system_prompt = """Ты — опытный футбольный менеджер (бот) в браузерной игре SoccerLife.ru.
 Твоя цель — управлять командой, тренировать игроков, следить за финансами.

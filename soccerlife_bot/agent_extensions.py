@@ -19,7 +19,6 @@ async def get_upcoming_opponents(agent):
                     opp_name = a.text.strip()
 
                     if not opp_name:
-                         # Надежный регексп для извлечения имени соперника из блока следующего матча
                          match = re.search(r'\([^)]+\)\s*(.+?)\s*(Сегодня|Завтра|\d{2}\.\d{2})', parent.text, re.IGNORECASE)
                          if match:
                              opp_name = match.group(1).strip()
@@ -60,6 +59,7 @@ async def get_opponent_stats(agent, opp_id):
 
     stats = []
 
+    # 1. Сила клуба
     for div in soup.find_all('div'):
         if 'Сила клуба' in div.text:
             text = div.text.strip()
@@ -72,35 +72,45 @@ async def get_opponent_stats(agent, opp_id):
                     stats.append(f"Сила клуба: {lines[1]}")
             break
 
+    # 2. Игроки
     players_table = None
     for t in soup.find_all('table'):
         th_texts = [th.text.strip().lower() for th in t.find_all('th')]
-        if 'амплуа' in th_texts and 'воз' in th_texts and 'скилл' in th_texts:
+        if '#' in th_texts and 'амплуа' in th_texts and 'воз' in th_texts and 'скилл' in th_texts:
             players_table = t
             break
 
     if players_table:
         skills = []
+        players_count = 0
         rows = players_table.find_all('tr')
+
+        # Получаем индексы колонок
+        th_texts = [th.text.strip().lower() for th in players_table.find_all('th')]
+        skill_idx = th_texts.index('скилл') if 'скилл' in th_texts else -1
+
         for r in rows[1:]:
             cells = r.find_all('td')
-            # Look for the last column that contains a valid skill number
-            for c in reversed(cells):
-                text_val = c.text.strip()
-                if text_val.isdigit():
-                    val = int(text_val)
-                    if 50 <= val <= 250:
-                        skills.append(val)
-                        break
+            # Настоящая строка с игроком начинается с числа (номер по порядку или номер на футболке)
+            if cells and cells[0].text.strip().isdigit():
+                players_count += 1
+                if skill_idx != -1 and skill_idx < len(cells):
+                    skill_text = cells[skill_idx].text.strip()
+                    match = re.search(r'^(\d+)', skill_text)
+                    if match:
+                        val = int(match.group(1))
+                        if 50 <= val <= 250:
+                            skills.append(val)
 
+        stats.append(f"Количество игроков в ростере: {players_count}")
         if skills:
-            stats.append(f"Количество игроков: {len(skills)}")
             skills.sort(reverse=True)
             top_11 = skills[:11]
             avg_skill = sum(top_11) / len(top_11)
             stats.append(f"Средний скилл топ-11 игроков: {avg_skill:.1f}")
             stats.append(f"Максимальный скилл: {max(skills)}")
 
+    # 3. Последние матчи
     recent_games_found = False
     for div in soup.find_all('div'):
          if 'Календарь игр команды' in div.text:
