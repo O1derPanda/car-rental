@@ -91,7 +91,7 @@ class SoccerLifeAgent:
                 response = await self.client.chat.completions.create(
                     model=self.model,
                     messages=messages,
-                    max_tokens=250
+                    max_tokens=1000
                 )
                 return response.choices[0].message.content
             except Exception as e:
