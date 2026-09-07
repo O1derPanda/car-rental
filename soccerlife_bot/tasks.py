@@ -7,33 +7,38 @@ async def run_daily_tasks():
 
     print("\n--- Running Daily Check ---")
 
-    # 1. Сбор информации о команде
+    # 1. Сбор информации
     print("Gathering team info...")
     team_data = await agent.get_team_page_content()
 
-    # 2. Сбор информации о тренировках
-    print("Gathering training info...")
-    train_data = await agent.get_training_page_content()
+    # Можно добавить проверку финансов (base.php / finance.php)
+    print("Gathering financial/infrastructure info...")
+    await agent.page.goto("https://soccerlife.ru/finance.php")
+    finance_data = await agent.page.evaluate("document.body.innerText")
+    finance_data = "\n".join([line.strip() for line in finance_data.splitlines() if line.strip()])[:1500]
 
-    # 3. Принятие решений LLM
-    print("Consulting LLM for actions...")
+    print("Consulting LLM for actions based on team and finance data...")
     prompt = f"""
-    Данные страницы команды:
+    Данные команды:
     {team_data[:1000]}
 
-    Данные страницы тренировок:
-    {train_data[:1000]}
+    Данные финансов:
+    {finance_data[:1000]}
 
-    Исходя из этих данных, какие рутинные задачи ты бы предложил выполнить прямо сейчас?
-    (Отвечай строго в JSON формате согласно системному промпту, например {{"action": "train", "target": "all"}}).
-    Если действий не требуется, ответь {{"action": "none", "reason": "all good"}}.
+    Твоя задача — выбрать, что сделать сейчас (ты можешь выполнить только одно действие за раз).
+    Варианты:
+    - "train" (проверить/настроить тренировки)
+    - "finance" (если нужно, например, взять кредит или настроить спонсоров)
+    - "none" (если всё в порядке и действий не требуется)
+
+    Отвечай СТРОГО в JSON, например: {{"action": "finance", "reason": "need to check sponsors"}}
     """
 
     decision_json = await agent.chat(prompt)
     print("LLM Decision:")
     print(decision_json)
 
-    # 4. Реальное выполнение действий на основе JSON
+    # 2. Выполнение действий на основе JSON
     print("Executing decision...")
     await agent.execute_action(decision_json)
 

@@ -8,7 +8,7 @@
    ```env
    SOCCERLIFE_LOGIN="ваш_логин"
    SOCCERLIFE_PASSWORD="ваш_пароль"
-   OPENAI_API_KEY="ваш_openai_api_key"
+   OPENROUTER_API_KEY="ваш_openrouter_api_key"
    ```
 
 2. Установите зависимости:
@@ -37,3 +37,9 @@
 * `agent.py` — Основной класс `SoccerLifeAgent`, отвечающий за взаимодействие с браузером и OpenAI.
 * `tasks.py` — Скрипт запуска автоматизации рутинных задач.
 * `knowledge_base/` — Папка (добавлена в .gitignore) с правилами игры в формате Markdown, которые бот может использовать для справки.
+
+Вы можете изменить используемую модель LLM, добавив в `.env`:
+```env
+LLM_MODEL="ваша_модель"
+```
+По умолчанию используется `minimax/minimax-m3:free`.
