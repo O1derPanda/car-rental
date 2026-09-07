@@ -1,0 +1,1367 @@
+Все блоки (F12) которые есть на странице матча
+
+За пример взяли матч 	-	"Валлей Прайд - Полиспортива"
+Страница матча: https://soccerlife.ru/game.php?id=34540977
+
+Блок хозяев матча:
+<table data-school="2" cellpadding="4" cellspacing="1" class="game-ui__table-sub mt30">
+                            <tbody><tr id="lineup_player_4951295" class="game-ui__lineup-item_0 nowrap" data-line="0" data-position="gk">
+                    <td class="m1 nowrap">GK</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951295--8"></div>
+                    <div style="float:right;" id="statp-4951295--9"></div>
+                    <div style="float:right;" id="statp-4951295--19"></div>
+                    <div style="float:right;" id="statp-4951295--15"></div>
+                    <div style="float:right;" id="statp-4951295--11"></div>
+                    <div style="float:right;" id="statp-4951295-12"></div>
+                    <div style="float:right;" id="statp-4951295-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951295,1,34540977,'gk');" style="display: inline-block;max-width: 80px;overflow: hidden;">С.Эйли</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951295-rank" style="opacity: 1;">7.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951295-1" style="margin-right: 3px; color: green; opacity: 1;">10</span>
+    <span id="statp-4951295--1" style="color: rgb(153, 14, 14); opacity: 1;">1</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951295-3" class="green"></div>
+        <div id="statp-4951295--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951295-4" class="green"></div>
+        <div id="statp-4951295-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951295-ontarget" class="green"></div>
+        <div id="statp-4951295-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">127</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_1780777" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="ld">
+                    <td class="m1 nowrap">LD</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-1780777--8"></div>
+                    <div style="float:right;" id="statp-1780777--9"></div>
+                    <div style="float:right;" id="statp-1780777--19"></div>
+                    <div style="float:right;" id="statp-1780777--15"></div>
+                    <div style="float:right;" id="statp-1780777--11"></div>
+                    <div style="float:right;" id="statp-1780777-12"></div>
+                    <div style="float:right;" id="statp-1780777-15"></div>
+                    <span class="flags c_ge_18" style="vertical-align: middle;" title="Грузия (ge)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(1780777,1,34540977,'ld');" style="display: inline-block;max-width: 80px;overflow: hidden;">А.Какашвили</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-1780777-rank" style="opacity: 1;">6.3</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1780777-1" style="margin-right: 3px; color: green; opacity: 1;">8</span>
+    <span id="statp-1780777--1" style="color: rgb(153, 14, 14); opacity: 1;">1</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1780777-3" class="green" style="opacity: 1;">1</div>
+        <div id="statp-1780777--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1780777-4" class="green" style="opacity: 1;">3</div>
+        <div id="statp-1780777-20" class="green" style="opacity: 1;">1</div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1780777-ontarget" class="green"></div>
+        <div id="statp-1780777-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">118</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_8907248" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="cd1">
+                    <td class="m1 nowrap">CD1</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float: right; opacity: 1;" id="statp-8907248--8"><img src="/images/gen4/yc.png"></div>
+                    <div style="float:right;" id="statp-8907248--9"></div>
+                    <div style="float:right;" id="statp-8907248--19"></div>
+                    <div style="float:right;" id="statp-8907248--15"></div>
+                    <div style="float:right;" id="statp-8907248--11"></div>
+                    <div style="float:right;" id="statp-8907248-12"></div>
+                    <div style="float:right;" id="statp-8907248-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(8907248,1,34540977,'cd1');" style="display: inline-block;max-width: 80px;overflow: hidden;">Ш.Джеймс</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-8907248-rank" style="opacity: 1;">6.8</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-8907248-1" style="margin-right: 3px; color: green; opacity: 1;">10</span>
+    <span id="statp-8907248--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-8907248-3" class="green"></div>
+        <div id="statp-8907248--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-8907248-4" class="green" style="opacity: 1;">3</div>
+        <div id="statp-8907248-20" class="green" style="opacity: 1;">5</div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-8907248-ontarget" class="green"></div>
+        <div id="statp-8907248-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">129</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_1497958" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="cd3">
+                    <td class="m1 nowrap">CD3</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float: right; opacity: 1;" id="statp-1497958--8"><img src="/images/gen4/yc.png"></div>
+                    <div style="float:right;" id="statp-1497958--9"></div>
+                    <div style="float:right;" id="statp-1497958--19"></div>
+                    <div style="float:right;" id="statp-1497958--15"></div>
+                    <div style="float:right;" id="statp-1497958--11"></div>
+                    <div style="float:right;" id="statp-1497958-12"></div>
+                    <div style="float:right;" id="statp-1497958-15"></div>
+                    <span class="flags c_nd_18" style="vertical-align: middle;" title="Северная Ирландия (nd)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(1497958,1,34540977,'cd3');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Уотт</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-1497958-rank" style="opacity: 1;">6.3</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1497958-1" style="margin-right: 3px; color: green; opacity: 1;">6</span>
+    <span id="statp-1497958--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1497958-3" class="green"></div>
+        <div id="statp-1497958--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1497958-4" class="green" style="opacity: 1;">4</div>
+        <div id="statp-1497958-20" class="green" style="opacity: 1;">1</div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1497958-ontarget" class="green"></div>
+        <div id="statp-1497958-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">127</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_8413466" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="rd">
+                    <td class="m1 nowrap">RD</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-8413466--8"></div>
+                    <div style="float:right;" id="statp-8413466--9"></div>
+                    <div style="float:right;" id="statp-8413466--19"></div>
+                    <div style="float:right;" id="statp-8413466--15"></div>
+                    <div style="float:right;" id="statp-8413466--11"></div>
+                    <div style="float:right;" id="statp-8413466-12"></div>
+                    <div style="float:right;" id="statp-8413466-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(8413466,1,34540977,'rd');" style="display: inline-block;max-width: 80px;overflow: hidden;">П.Арзу</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-8413466-rank" style="opacity: 1;">6.8</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-8413466-1" style="margin-right: 3px; color: green; opacity: 1;">26</span>
+    <span id="statp-8413466--1" style="color: rgb(153, 14, 14); opacity: 1;">1</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-8413466-3" class="green" style="opacity: 1;">1</div>
+        <div id="statp-8413466--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-8413466-4" class="green" style="opacity: 1;">6</div>
+        <div id="statp-8413466-20" class="green" style="opacity: 1;">3</div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-8413466-ontarget" class="green"></div>
+        <div id="statp-8413466-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">118</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951305" class="game-ui__lineup-item_2 nowrap" data-line="2" data-position="dm2">
+                    <td class="m1 nowrap">DM2</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951305--8"></div>
+                    <div style="float:right;" id="statp-4951305--9"></div>
+                    <div style="float:right;" id="statp-4951305--19"></div>
+                    <div style="float:right;" id="statp-4951305--15"></div>
+                    <div style="float:right;" id="statp-4951305--11"></div>
+                    <div style="float:right;" id="statp-4951305-12"></div>
+                    <div style="float:right;" id="statp-4951305-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951305,1,34540977,'dm2');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Пиажжио</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951305-rank" style="opacity: 1;">7.3</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951305-1" style="margin-right: 3px; color: green; opacity: 1;">19</span>
+    <span id="statp-4951305--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951305-3" class="green" style="opacity: 1;">1</div>
+        <div id="statp-4951305--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951305-4" class="green" style="opacity: 1;">1</div>
+        <div id="statp-4951305-20" class="green" style="opacity: 1;">9</div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951305-ontarget" class="green"></div>
+        <div id="statp-4951305-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">96</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_8494592" class="game-ui__lineup-item_2 nowrap" data-line="2" data-position="cm1">
+                    <td class="m1 nowrap">CM1</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-8494592--8"></div>
+                    <div style="float:right;" id="statp-8494592--9"></div>
+                    <div style="float:right;" id="statp-8494592--19"></div>
+                    <div style="float:right;" id="statp-8494592--15"></div>
+                    <div style="float:right;" id="statp-8494592--11"></div>
+                    <div style="float:right;" id="statp-8494592-12"></div>
+                    <div style="float:right;" id="statp-8494592-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(8494592,1,34540977,'cm1');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Мосс</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-8494592-rank" style="opacity: 1;">6.5</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-8494592-1" style="margin-right: 3px; color: green; opacity: 1;">35</span>
+    <span id="statp-8494592--1" style="color: rgb(153, 14, 14); opacity: 1;">3</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-8494592-3" class="green" style="opacity: 1;">1</div>
+        <div id="statp-8494592--3" style="color: rgb(153, 14, 14); opacity: 1;">1</div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-8494592-4" class="green"></div>
+        <div id="statp-8494592-20" class="green" style="opacity: 1;">2</div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-8494592-ontarget" class="green"></div>
+        <div id="statp-8494592-shots" class="green" style="opacity: 1;">2</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">114</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951308" class="game-ui__lineup-item_2 nowrap" data-line="2" data-position="cm3">
+                    <td class="m1 nowrap">CM3</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951308--8"></div>
+                    <div style="float:right;" id="statp-4951308--9"></div>
+                    <div style="float:right;" id="statp-4951308--19"></div>
+                    <div style="float:right;" id="statp-4951308--15"></div>
+                    <div style="float:right;" id="statp-4951308--11"></div>
+                    <div style="float:right;" id="statp-4951308-12"></div>
+                    <div style="float:right;" id="statp-4951308-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951308,1,34540977,'cm3');" style="display: inline-block;max-width: 80px;overflow: hidden;">К.Вивода</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951308-rank" style="opacity: 1;">7.1</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951308-1" style="margin-right: 3px; color: green; opacity: 1;">64</span>
+    <span id="statp-4951308--1" style="color: rgb(153, 14, 14); opacity: 1;">4</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951308-3" class="green" style="opacity: 1;">3</div>
+        <div id="statp-4951308--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951308-4" class="green" style="opacity: 1;">2</div>
+        <div id="statp-4951308-20" class="green" style="opacity: 1;">1</div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951308-ontarget" class="green"></div>
+        <div id="statp-4951308-shots" class="green" style="opacity: 1;">2</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">109</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_1092081" class="game-ui__lineup-item_2 nowrap" data-line="2" data-position="lw">
+                    <td class="m1 nowrap">LW</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-1092081--8"></div>
+                    <div style="float:right;" id="statp-1092081--9"></div>
+                    <div style="float:right;" id="statp-1092081--19"></div>
+                    <div style="float:right;" id="statp-1092081--15"></div>
+                    <div style="float:right;" id="statp-1092081--11"></div>
+                    <div style="float:right;" id="statp-1092081-12"></div>
+                    <div style="float:right;" id="statp-1092081-15"></div>
+                    <span class="flags c_se_18" style="vertical-align: middle;" title="Швеция (se)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(1092081,1,34540977,'lw');" style="display: inline-block;max-width: 80px;overflow: hidden;">Х.Аслан</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-1092081-rank" style="opacity: 1;">6.6</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1092081-1" style="margin-right: 3px; color: green; opacity: 1;">23</span>
+    <span id="statp-1092081--1" style="color: rgb(153, 14, 14); opacity: 1;">1</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1092081-3" class="green" style="opacity: 1;">3</div>
+        <div id="statp-1092081--3" style="color: rgb(153, 14, 14); opacity: 1;">5</div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1092081-4" class="green"></div>
+        <div id="statp-1092081-20" class="green" style="opacity: 1;">1</div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1092081-ontarget" class="green"></div>
+        <div id="statp-1092081-shots" class="green" style="opacity: 1;">3</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">131</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_1174182" class="game-ui__lineup-item_2 nowrap" data-line="2" data-position="rw">
+                    <td class="m1 nowrap">RW</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-1174182--8"></div>
+                    <div style="float:right;" id="statp-1174182--9"></div>
+                    <div style="float:right;" id="statp-1174182--19"></div>
+                    <div style="float:right;" id="statp-1174182--15"></div>
+                    <div style="float:right;" id="statp-1174182--11"></div>
+                    <div style="float:right;" id="statp-1174182-12"></div>
+                    <div style="float:right;" id="statp-1174182-15"></div>
+                    <span class="flags c_sa_18" style="vertical-align: middle;" title="Саудовская Аравия (sa)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(1174182,1,34540977,'rw');" style="display: inline-block;max-width: 80px;overflow: hidden;">М.Хамед</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-1174182-rank" style="opacity: 1;">6.8</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1174182-1" style="margin-right: 3px; color: green; opacity: 1;">53</span>
+    <span id="statp-1174182--1" style="color: rgb(153, 14, 14); opacity: 1;">14</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1174182-3" class="green" style="opacity: 1;">18</div>
+        <div id="statp-1174182--3" style="color: rgb(153, 14, 14); opacity: 1;">6</div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1174182-4" class="green" style="opacity: 1;">2</div>
+        <div id="statp-1174182-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1174182-ontarget" class="green" style="opacity: 1;">1</div>
+        <div id="statp-1174182-shots" class="green" style="opacity: 1;">4</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">131</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_1627691" class="game-ui__lineup-item_3 nowrap" data-line="3" data-position="st2">
+                    <td class="m1 nowrap">ST2</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-1627691--8"></div>
+                    <div style="float:right;" id="statp-1627691--9"></div>
+                    <div style="float:right;" id="statp-1627691--19"></div>
+                    <div style="float:right;" id="statp-1627691--15"></div>
+                    <div style="float:right;" id="statp-1627691--11"></div>
+                    <div style="float: right; opacity: 1;" id="statp-1627691-12"><img src="/images/ico/goal.gif"></div>
+                    <div style="float:right;" id="statp-1627691-15"></div>
+                    <span class="flags c_uy_18" style="vertical-align: middle;" title="Уругвай (uy)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(1627691,1,34540977,'st2');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Ифран</a>
+                                        <span class="captain hint" title="Капитан команды">к</span>                                                                            </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-1627691-rank" style="opacity: 1;">7.5</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1627691-1" style="margin-right: 3px; color: green; opacity: 1;">16</span>
+    <span id="statp-1627691--1" style="color: rgb(153, 14, 14); opacity: 1;">1</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1627691-3" class="green"></div>
+        <div id="statp-1627691--3" style="color: rgb(153, 14, 14); opacity: 1;">3</div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1627691-4" class="green"></div>
+        <div id="statp-1627691-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1627691-ontarget" class="green" style="opacity: 1;">3</div>
+        <div id="statp-1627691-shots" class="green" style="opacity: 1;">8</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps1" title="Скилл">154</div>
+            </td>
+            </tr>
+                </tbody></table>
+
+Блок гостей матча: 
+<table cellpadding="4" cellspacing="1" class="game-ui__table-sub mt30">
+                            <tbody><tr id="lineup_player_1267718" class="game-ui__lineup-item_0 nowrap" data-line="0" data-position="gk">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1267718-rank" style="opacity: 1;">6.5</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1267718-1" style="margin-right: 3px; color: green; opacity: 1;">17</span>
+    <span id="statp-1267718--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1267718-3" class="green"></div>
+        <div id="statp-1267718--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1267718-4" class="green"></div>
+        <div id="statp-1267718-20" class="green"></div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1267718-ontarget" class="green"></div>
+        <div id="statp-1267718-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">134</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1267718--19"></div>
+                <div style="float:left;" id="statp-1267718--15"></div>
+                <div style="float:left;" id="statp-1267718--11"></div>
+                <div style="float:left;" id="statp-1267718--8"></div>
+                <div style="float:left;" id="statp-1267718--9"></div>
+                <div style="float:left;" id="statp-1267718-12"></div>
+                <div style="float:left;" id="statp-1267718-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1267718,1,34540977,'gk');" style="display: inline-block;max-width: 80px;overflow: hidden;">Х.Янчянь</a>
+                <span class="flags c_cn_18" style="vertical-align: middle;" title="Китай (cn)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">GK</td>
+            </tr>
+        <tr id="lineup_player_1491679" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="lb">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1491679-rank" style="opacity: 1;">6.8</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1491679-1" style="margin-right: 3px; color: green; opacity: 1;">35</span>
+    <span id="statp-1491679--1" style="color: rgb(153, 14, 14); opacity: 1;">2</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1491679-3" class="green"></div>
+        <div id="statp-1491679--3" style="color: rgb(153, 14, 14); opacity: 1;">2</div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1491679-4" class="green" style="opacity: 1;">6</div>
+        <div id="statp-1491679-20" class="green" style="opacity: 1;">1</div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1491679-ontarget" class="green"></div>
+        <div id="statp-1491679-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">131</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1491679--19"></div>
+                <div style="float:left;" id="statp-1491679--15"></div>
+                <div style="float:left;" id="statp-1491679--11"></div>
+                <div style="float:left;" id="statp-1491679--8"></div>
+                <div style="float:left;" id="statp-1491679--9"></div>
+                <div style="float:left;" id="statp-1491679-12"></div>
+                <div style="float:left;" id="statp-1491679-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1491679,1,34540977,'lb');" style="display: inline-block;max-width: 80px;overflow: hidden;">И.Джанг</a>
+                <span class="flags c_kr_18" style="vertical-align: middle;" title="Южная Корея (kr)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">LB</td>
+            </tr>
+        <tr id="lineup_player_1107747" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="cd1">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1107747-rank" style="opacity: 1;">6.2</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1107747-1" style="margin-right: 3px; color: green; opacity: 1;">27</span>
+    <span id="statp-1107747--1" style="color: rgb(153, 14, 14); opacity: 1;">1</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1107747-3" class="green"></div>
+        <div id="statp-1107747--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1107747-4" class="green" style="opacity: 1;">3</div>
+        <div id="statp-1107747-20" class="green" style="opacity: 1;">1</div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1107747-ontarget" class="green"></div>
+        <div id="statp-1107747-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">130</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1107747--19"></div>
+                <div style="float:left;" id="statp-1107747--15"></div>
+                <div style="float:left;" id="statp-1107747--11"></div>
+                <div style="float:left;" id="statp-1107747--8"></div>
+                <div style="float:left;" id="statp-1107747--9"></div>
+                <div style="float:left;" id="statp-1107747-12"></div>
+                <div style="float:left;" id="statp-1107747-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1107747,1,34540977,'cd1');" style="display: inline-block;max-width: 80px;overflow: hidden;">М.Карбезас</a>
+                <span class="flags c_es_18" style="vertical-align: middle;" title="Испания (es)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">CD1</td>
+            </tr>
+        <tr id="lineup_player_1646284" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="cd2">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1646284-rank" style="opacity: 1;">6.7</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1646284-1" style="margin-right: 3px; color: green; opacity: 1;">15</span>
+    <span id="statp-1646284--1" style="color: rgb(153, 14, 14); opacity: 1;">2</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1646284-3" class="green"></div>
+        <div id="statp-1646284--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1646284-4" class="green" style="opacity: 1;">2</div>
+        <div id="statp-1646284-20" class="green" style="opacity: 1;">3</div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1646284-ontarget" class="green" style="opacity: 1;">1</div>
+        <div id="statp-1646284-shots" class="green" style="opacity: 1;">1</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">126</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1646284--19"></div>
+                <div style="float:left;" id="statp-1646284--15"></div>
+                <div style="float:left;" id="statp-1646284--11"></div>
+                <div style="float:left;" id="statp-1646284--8"></div>
+                <div style="float:left;" id="statp-1646284--9"></div>
+                <div style="float:left;" id="statp-1646284-12"></div>
+                <div style="float:left;" id="statp-1646284-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1646284,1,34540977,'cd2');" style="display: inline-block;max-width: 80px;overflow: hidden;">Б.Чу</a>
+                <span class="flags c_cn_18" style="vertical-align: middle;" title="Китай (cn)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">CD2</td>
+            </tr>
+        <tr id="lineup_player_8409523" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="cd3">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-8409523-rank" style="opacity: 1;">7.0</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-8409523-1" style="margin-right: 3px; color: green; opacity: 1;">19</span>
+    <span id="statp-8409523--1" style="color: rgb(153, 14, 14); opacity: 1;">1</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-8409523-3" class="green"></div>
+        <div id="statp-8409523--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-8409523-4" class="green" style="opacity: 1;">3</div>
+        <div id="statp-8409523-20" class="green" style="opacity: 1;">4</div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-8409523-ontarget" class="green" style="opacity: 1;">1</div>
+        <div id="statp-8409523-shots" class="green" style="opacity: 1;">2</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">127</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-8409523--19"></div>
+                <div style="float:left;" id="statp-8409523--15"></div>
+                <div style="float:left;" id="statp-8409523--11"></div>
+                <div style="float:left;" id="statp-8409523--8"></div>
+                <div style="float:left;" id="statp-8409523--9"></div>
+                <div style="float:left;" id="statp-8409523-12"></div>
+                <div style="float:left;" id="statp-8409523-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(8409523,1,34540977,'cd3');" style="display: inline-block;max-width: 80px;overflow: hidden;">М.Дагначев</a>
+                <span class="flags c_et_18" style="vertical-align: middle;" title="Эфиопия (et)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">CD3</td>
+            </tr>
+        <tr id="lineup_player_1176828" class="game-ui__lineup-item_1 nowrap" data-line="1" data-position="rb">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1176828-rank" style="opacity: 1;">7.0</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1176828-1" style="margin-right: 3px; color: green; opacity: 1;">30</span>
+    <span id="statp-1176828--1" style="color: rgb(153, 14, 14); opacity: 1;">4</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1176828-3" class="green" style="opacity: 1;">2</div>
+        <div id="statp-1176828--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1176828-4" class="green" style="opacity: 1;">4</div>
+        <div id="statp-1176828-20" class="green" style="opacity: 1;">5</div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1176828-ontarget" class="green"></div>
+        <div id="statp-1176828-shots" class="green" style="opacity: 1;">1</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">133</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1176828--19"></div>
+                <div style="float:left;" id="statp-1176828--15"></div>
+                <div style="float:left;" id="statp-1176828--11"></div>
+                <div style="float:left;" id="statp-1176828--8"></div>
+                <div style="float:left;" id="statp-1176828--9"></div>
+                <div style="float:left;" id="statp-1176828-12"></div>
+                <div style="float:left;" id="statp-1176828-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1176828,1,34540977,'rb');" style="display: inline-block;max-width: 80px;overflow: hidden;">А.Федотов</a>
+                <span class="flags c_lv_18" style="vertical-align: middle;" title="Латвия (lv)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">RB</td>
+            </tr>
+        <tr id="lineup_player_1661145" class="game-ui__lineup-item_2 nowrap" data-line="2" data-position="cm2">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1661145-rank" style="opacity: 1;">7.6</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1661145-1" style="margin-right: 3px; color: green; opacity: 1;">69</span>
+    <span id="statp-1661145--1" style="color: rgb(153, 14, 14); opacity: 1;">2</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1661145-3" class="green" style="opacity: 1;">2</div>
+        <div id="statp-1661145--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1661145-4" class="green" style="opacity: 1;">1</div>
+        <div id="statp-1661145-20" class="green" style="opacity: 1;">6</div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1661145-ontarget" class="green"></div>
+        <div id="statp-1661145-shots" class="green"></div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">130</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1661145--19"></div>
+                <div style="float:left;" id="statp-1661145--15"></div>
+                <div style="float:left;" id="statp-1661145--11"></div>
+                <div style="float:left;" id="statp-1661145--8"></div>
+                <div style="float:left;" id="statp-1661145--9"></div>
+                <div style="float:left;" id="statp-1661145-12"></div>
+                <div style="float:left;" id="statp-1661145-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1661145,1,34540977,'cm2');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Эстифанос</a>
+                <span class="flags c_et_18" style="vertical-align: middle;" title="Эфиопия (et)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">CM2</td>
+            </tr>
+        <tr id="lineup_player_2039624" class="game-ui__lineup-item_2 nowrap" data-line="2" data-position="lw">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-2039624-rank" style="opacity: 1;">7.2</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-2039624-1" style="margin-right: 3px; color: green; opacity: 1;">30</span>
+    <span id="statp-2039624--1" style="color: rgb(153, 14, 14); opacity: 1;">6</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-2039624-3" class="green" style="opacity: 1;">15</div>
+        <div id="statp-2039624--3" style="color: rgb(153, 14, 14); opacity: 1;">5</div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-2039624-4" class="green"></div>
+        <div id="statp-2039624-20" class="green"></div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-2039624-ontarget" class="green" style="opacity: 1;">1</div>
+        <div id="statp-2039624-shots" class="green" style="opacity: 1;">3</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">127</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-2039624--19"></div>
+                <div style="float:left;" id="statp-2039624--15"></div>
+                <div style="float:left;" id="statp-2039624--11"></div>
+                <div style="float:left;" id="statp-2039624--8"></div>
+                <div style="float:left;" id="statp-2039624--9"></div>
+                <div style="float:left;" id="statp-2039624-12"></div>
+                <div style="float:left;" id="statp-2039624-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(2039624,1,34540977,'lw');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Таделе</a>
+                <span class="flags c_et_18" style="vertical-align: middle;" title="Эфиопия (et)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">LW</td>
+            </tr>
+        <tr id="lineup_player_1401438" class="game-ui__lineup-item_2 nowrap" data-line="2" data-position="rw">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1401438-rank" style="opacity: 1;">6.9</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1401438-1" style="margin-right: 3px; color: green; opacity: 1;">31</span>
+    <span id="statp-1401438--1" style="color: rgb(153, 14, 14); opacity: 1;">4</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1401438-3" class="green" style="opacity: 1;">2</div>
+        <div id="statp-1401438--3" style="color: rgb(153, 14, 14); opacity: 1;">1</div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1401438-4" class="green" style="opacity: 1;">2</div>
+        <div id="statp-1401438-20" class="green"></div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1401438-ontarget" class="green" style="opacity: 1;">1</div>
+        <div id="statp-1401438-shots" class="green" style="opacity: 1;">2</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">130</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1401438--19"></div>
+                <div style="float:left;" id="statp-1401438--15"></div>
+                <div style="float:left;" id="statp-1401438--11"></div>
+                <div style="float:left;" id="statp-1401438--8"></div>
+                <div style="float:left;" id="statp-1401438--9"></div>
+                <div style="float:left;" id="statp-1401438-12"></div>
+                <div style="float:left;" id="statp-1401438-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1401438,1,34540977,'rw');" style="display: inline-block;max-width: 80px;overflow: hidden;">А.Апатин</a>
+                <span class="flags c_ru_18" style="vertical-align: middle;" title="Россия (ru)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">RW</td>
+            </tr>
+        <tr id="lineup_player_1499069" class="game-ui__lineup-item_3 nowrap" data-line="3" data-position="st1">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1499069-rank" style="opacity: 1;">7.0</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1499069-1" style="margin-right: 3px; color: green; opacity: 1;">36</span>
+    <span id="statp-1499069--1" style="color: rgb(153, 14, 14); opacity: 1;">4</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1499069-3" class="green" style="opacity: 1;">2</div>
+        <div id="statp-1499069--3" style="color: rgb(153, 14, 14); opacity: 1;">1</div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1499069-4" class="green"></div>
+        <div id="statp-1499069-20" class="green"></div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1499069-ontarget" class="green" style="opacity: 1;">1</div>
+        <div id="statp-1499069-shots" class="green" style="opacity: 1;">2</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">134</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1499069--19"></div>
+                <div style="float:left;" id="statp-1499069--15"></div>
+                <div style="float:left;" id="statp-1499069--11"></div>
+                <div style="float:left;" id="statp-1499069--8"></div>
+                <div style="float:left;" id="statp-1499069--9"></div>
+                <div style="float: left; opacity: 1;" id="statp-1499069-12"><img src="/images/ico/goal.gif"></div>
+                <div style="float:left;" id="statp-1499069-15"></div>
+                                                <span class="captain hint" title="Капитан команды">к</span>                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1499069,1,34540977,'st1');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Синигалья</a>
+                <span class="flags c_it_18" style="vertical-align: middle;" title="Италия (it)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">ST1</td>
+            </tr>
+        <tr id="lineup_player_1110259" class="game-ui__lineup-item_3 nowrap" data-line="3" data-position="st3">
+                    <td class="mr1">
+                <div class="ppr2" id="statp-1110259-rank" style="opacity: 1;">6.9</div>
+<div class="ppa2" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1110259-1" style="margin-right: 3px; color: green; opacity: 1;">27</span>
+    <span id="statp-1110259--1" style="color: rgb(153, 14, 14); opacity: 1;">6</span>
+</div>
+<div class="ppd2" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1110259-3" class="green" style="opacity: 1;">6</div>
+        <div id="statp-1110259--3" style="color: rgb(153, 14, 14); opacity: 1;">1</div>
+    </div>
+</div>
+<div class="ppe2" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1110259-4" class="green"></div>
+        <div id="statp-1110259-20" class="green"></div>
+    </div>
+</div>
+<div class="pph2" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1110259-ontarget" class="green" style="opacity: 1;">4</div>
+        <div id="statp-1110259-shots" class="green" style="opacity: 1;">4</div>
+    </div>
+</div>
+<div style="display:none;cursor: help;" class="pps2" title="Скилл">134</div>
+            </td>
+            <td class="nowrap right" style="overflow: hidden;">
+                <div style="float:left;" id="statp-1110259--19"></div>
+                <div style="float:left;" id="statp-1110259--15"></div>
+                <div style="float:left;" id="statp-1110259--11"></div>
+                <div style="float:left;" id="statp-1110259--8"></div>
+                <div style="float:left;" id="statp-1110259--9"></div>
+                <div style="float: left; opacity: 1;" id="statp-1110259-12"><img src="/images/ico/goal.gif"></div>
+                <div style="float:left;" id="statp-1110259-15"></div>
+                                                                                                <a href="javascript:void(0)" class="txt" onclick="playerCard(1110259,1,34540977,'st3');" style="display: inline-block;max-width: 80px;overflow: hidden;">Н.Карабали</a>
+                <span class="flags c_ec_18" style="vertical-align: middle;" title="Эквадор (ec)"></span> <span style="display:none;" class="nation2"></span>
+            </td>
+            <td class="m1 nowrap">ST3</td>
+            </tr>
+                </tbody></table>
+
+Блок вкладок информации по матчу (Матч; Управление; Теп.карта(Тепловая карта); Сравнение; Расстановка; Информация(Но это премиум)):
+<div style="display: flex; justify-content: space-between; width: 800px; margin-bottom: 4px; padding: 0;">
+                    <div data-school="1" data-field="1" class="tab-a head_button" onclick="amm(this);">Матч</div>
+                    <div data-school="8" data-field="4" class="tab-p head_button" onclick="amm(this);">
+                        Управление
+                    </div>
+                    <div data-school="9" data-field="2" class="tab-p head_button" onclick="amm(this);heat_ttx(34540977);">Теп.карта</div>
+                    <div data-field="5" class="tab-p head_button" onclick="amm(this);">Сравнение</div>
+                    <div data-field="6" class="tab-p head_button" onclick="amm(this); loadpos(34540977);" id="endload">Расстановка</div>
+                    <div data-field="7" class="tab-p head_button" onclick="amm(this);getHistory(77337, 76674, '#derbyHistory', 7); $('#s1').hide();">Информация</div>
+                </div>
+У каждого из этого блока есть центральный блок на котором эта информация расположена.
+
+Вкладки хозяев матча Статистика и Замены:
+<div id="butbar-11" class="game-ui__switch-1 game-ui__switch-active" data-id="1" onclick="button_cases(1, 1);" style="margin-right:2px;">Статистика</div>
+<div data-school="6" id="butbar-12" class="game-ui__switch-1" data-id="2" onclick="button_cases(2, 1);">Замены</div>
+
+И сами блоки: 
+Статистика: 
+<table cellpadding="5" cellspacing="1" class="game-ui__table-sub slf3">
+                            <tbody><tr>
+                <td>Сила состава на поле
+                </td><td class="l1">
+                    <span class="stat-77337-power2">1376</span>
+                </td></tr><tr><td>владение мячом, %</td><td class="l1"><span class="stat-77337-pos" style="opacity: 1;">45.7</span></td></tr><tr><td>всего ударов</td><td class="l1"><span class="stat-77337-shots" style="opacity: 1;">19</span></td></tr><tr><td>ударов в створ</td><td class="l1"><span class="stat-77337-ontarget" style="opacity: 1;">4</span></td></tr><tr><td>xG ударов</td><td class="l1"><span class="stat-77337-xG" style="opacity: 1;">1.14</span></td></tr><tr><td>точных передач</td><td class="l1"><span class="stat-77337-1" style="opacity: 1;">270</span></td></tr><tr><td>неточных передач</td><td class="l1"><span class="stat-77337--1" style="opacity: 1;">26</span></td></tr><tr><td>Кол-во ТТД</td><td class="l1"><span class="stat-77337-ttx" style="opacity: 1;">637</span></td></tr><tr><td>брак ТТД, %</td><td class="l1"><span class="stat-77337-defective" style="opacity: 1;">14</span></td></tr><tr><td>вектор обороны <a class="original" href="/forum/view_post.php?m=4785234">[?]</a></td><td class="l1"><span class="stat-77337-def_height" style="opacity: 1;"><b class="smoke">0%</b></span></td></tr><tr><td>вектор прессинга</td><td class="l1"><span class="stat-77337-press_height" style="opacity: 1;"><b class="smoke">+7%</b></span></td></tr><tr><td>фолов</td><td class="l1"><span class="stat-77337--7" style="opacity: 1;">5</span></td></tr><tr><td>угловых</td><td class="l1"><span class="stat-77337-14" style="opacity: 1;">2</span></td></tr><tr><td>офсайдов</td><td class="l1"><span class="stat-77337--10" style="opacity: 1;">1</span></td></tr><tr><td>индивид.действия</td><td class="l1"><span class="stat-77337-ind3" style="opacity: 1;">43</span></td></tr><tr><td>штанг</td><td class="l1"><span class="stat-77337-16">0</span></td></tr><tr><td>поддержка</td><td class="l1"><span class="stat-77337-fans">0</span></td>                        </tr></tbody></table>
+
+Замены: 
+<table cellpadding="4" cellspacing="1" class="game-ui__table-sub">
+                                    <tbody><tr id="lineup_player_4951314" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">ST/AM</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951314--8"></div>
+                    <div style="float:right;" id="statp-4951314--9"></div>
+                    <div style="float:right;" id="statp-4951314--19"></div>
+                    <div style="float:right;" id="statp-4951314--15"></div>
+                    <div style="float:right;" id="statp-4951314--11"></div>
+                    <div style="float:right;" id="statp-4951314-12"></div>
+                    <div style="float:right;" id="statp-4951314-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951314,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Занел</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951314-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951314-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951314--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951314-3" class="green"></div>
+        <div id="statp-4951314--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951314-4" class="green"></div>
+        <div id="statp-4951314-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951314-ontarget" class="green"></div>
+        <div id="statp-4951314-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">134</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951313" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">ST</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951313--8"></div>
+                    <div style="float:right;" id="statp-4951313--9"></div>
+                    <div style="float:right;" id="statp-4951313--19"></div>
+                    <div style="float:right;" id="statp-4951313--15"></div>
+                    <div style="float:right;" id="statp-4951313--11"></div>
+                    <div style="float:right;" id="statp-4951313-12"></div>
+                    <div style="float:right;" id="statp-4951313-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951313,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">Д.Паве</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951313-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951313-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951313--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951313-3" class="green"></div>
+        <div id="statp-4951313--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951313-4" class="green"></div>
+        <div id="statp-4951313-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951313-ontarget" class="green"></div>
+        <div id="statp-4951313-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">122</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951311" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">AM/ST</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951311--8"></div>
+                    <div style="float:right;" id="statp-4951311--9"></div>
+                    <div style="float:right;" id="statp-4951311--19"></div>
+                    <div style="float:right;" id="statp-4951311--15"></div>
+                    <div style="float:right;" id="statp-4951311--11"></div>
+                    <div style="float:right;" id="statp-4951311-12"></div>
+                    <div style="float:right;" id="statp-4951311-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951311,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">А.Раймонда</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951311-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951311-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951311--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951311-3" class="green"></div>
+        <div id="statp-4951311--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951311-4" class="green"></div>
+        <div id="statp-4951311-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951311-ontarget" class="green"></div>
+        <div id="statp-4951311-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">122</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951705" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">RM/AM</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951705--8"></div>
+                    <div style="float:right;" id="statp-4951705--9"></div>
+                    <div style="float:right;" id="statp-4951705--19"></div>
+                    <div style="float:right;" id="statp-4951705--15"></div>
+                    <div style="float:right;" id="statp-4951705--11"></div>
+                    <div style="float:right;" id="statp-4951705-12"></div>
+                    <div style="float:right;" id="statp-4951705-15"></div>
+                    <span class="flags c_dm_18" style="vertical-align: middle;" title="Доминика (dm)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951705,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">Л.Тезелли</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951705-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951705-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951705--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951705-3" class="green"></div>
+        <div id="statp-4951705--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951705-4" class="green"></div>
+        <div id="statp-4951705-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951705-ontarget" class="green"></div>
+        <div id="statp-4951705-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">121</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951300" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">CD/DM</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951300--8"></div>
+                    <div style="float:right;" id="statp-4951300--9"></div>
+                    <div style="float:right;" id="statp-4951300--19"></div>
+                    <div style="float:right;" id="statp-4951300--15"></div>
+                    <div style="float:right;" id="statp-4951300--11"></div>
+                    <div style="float:right;" id="statp-4951300-12"></div>
+                    <div style="float:right;" id="statp-4951300-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951300,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">Р.Де Леон</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951300-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951300-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951300--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951300-3" class="green"></div>
+        <div id="statp-4951300--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951300-4" class="green"></div>
+        <div id="statp-4951300-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951300-ontarget" class="green"></div>
+        <div id="statp-4951300-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">111</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951312" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">AM</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951312--8"></div>
+                    <div style="float:right;" id="statp-4951312--9"></div>
+                    <div style="float:right;" id="statp-4951312--19"></div>
+                    <div style="float:right;" id="statp-4951312--15"></div>
+                    <div style="float:right;" id="statp-4951312--11"></div>
+                    <div style="float:right;" id="statp-4951312-12"></div>
+                    <div style="float:right;" id="statp-4951312-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951312,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">Г.Ронко</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951312-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951312-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951312--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951312-3" class="green"></div>
+        <div id="statp-4951312--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951312-4" class="green"></div>
+        <div id="statp-4951312-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951312-ontarget" class="green"></div>
+        <div id="statp-4951312-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">111</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951301" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">CD/DM</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951301--8"></div>
+                    <div style="float:right;" id="statp-4951301--9"></div>
+                    <div style="float:right;" id="statp-4951301--19"></div>
+                    <div style="float:right;" id="statp-4951301--15"></div>
+                    <div style="float:right;" id="statp-4951301--11"></div>
+                    <div style="float:right;" id="statp-4951301-12"></div>
+                    <div style="float:right;" id="statp-4951301-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951301,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">У.Макколи</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951301-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951301-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951301--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951301-3" class="green"></div>
+        <div id="statp-4951301--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951301-4" class="green"></div>
+        <div id="statp-4951301-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951301-ontarget" class="green"></div>
+        <div id="statp-4951301-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">108</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_1436466" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">CD</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-1436466--8"></div>
+                    <div style="float:right;" id="statp-1436466--9"></div>
+                    <div style="float:right;" id="statp-1436466--19"></div>
+                    <div style="float:right;" id="statp-1436466--15"></div>
+                    <div style="float:right;" id="statp-1436466--11"></div>
+                    <div style="float:right;" id="statp-1436466-12"></div>
+                    <div style="float:right;" id="statp-1436466-15"></div>
+                    <span class="flags c_us_18" style="vertical-align: middle;" title="США (us)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(1436466,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">Т.Наданер</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-1436466-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-1436466-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-1436466--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-1436466-3" class="green"></div>
+        <div id="statp-1436466--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-1436466-4" class="green"></div>
+        <div id="statp-1436466-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-1436466-ontarget" class="green"></div>
+        <div id="statp-1436466-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">108</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951310" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">CM/AM</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951310--8"></div>
+                    <div style="float:right;" id="statp-4951310--9"></div>
+                    <div style="float:right;" id="statp-4951310--19"></div>
+                    <div style="float:right;" id="statp-4951310--15"></div>
+                    <div style="float:right;" id="statp-4951310--11"></div>
+                    <div style="float:right;" id="statp-4951310-12"></div>
+                    <div style="float:right;" id="statp-4951310-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951310,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">Э.Ланда</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951310-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951310-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951310--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951310-3" class="green"></div>
+        <div id="statp-4951310--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951310-4" class="green"></div>
+        <div id="statp-4951310-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951310-ontarget" class="green"></div>
+        <div id="statp-4951310-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">108</div>
+            </td>
+            </tr>
+        <tr id="lineup_player_4951298" class="game-ui__lineup-item_sub nowrap" data-line="sub" data-position="sub">
+                    <td class="m1 nowrap">LD/RD</td>
+            <td>
+                <div class="nowrap">
+                    <div style="float:right;" id="statp-4951298--8"></div>
+                    <div style="float:right;" id="statp-4951298--9"></div>
+                    <div style="float:right;" id="statp-4951298--19"></div>
+                    <div style="float:right;" id="statp-4951298--15"></div>
+                    <div style="float:right;" id="statp-4951298--11"></div>
+                    <div style="float:right;" id="statp-4951298-12"></div>
+                    <div style="float:right;" id="statp-4951298-15"></div>
+                    <span class="flags c_bz_18" style="vertical-align: middle;" title="Белиз (bz)"></span> <span style="display:none;" class="nation2"></span>
+                    <a href="javascript:void(0)" class="txt" onclick="playerCard(4951298,1,34540977,'sub');" style="display: inline-block;max-width: 80px;overflow: hidden;">Х.Чимилио</a>
+                                                                                                                    </div>
+            </td>
+            <td class="ml1">
+                <div class="ppr1" id="statp-4951298-rank" style="display: none;">6.0</div>
+<div class="ppa1" style="display:none;margin-right:2px;white-space:nowrap">
+    <span id="statp-4951298-1" style="margin-right:3px;color:green">0</span>
+    <span id="statp-4951298--1" style="color:#990e0e;">0</span>
+</div>
+<div class="ppd1" style="display: none;">
+    <div class="pots_ind" title="Успешных / не успешных индивидуальных действий">
+        <div id="statp-4951298-3" class="green"></div>
+        <div id="statp-4951298--3" style="color:#990e0e;"></div>
+    </div>
+</div>
+<div class="ppe1" style="display: none;">
+    <div class="pots_ind" title="Отборы / Перехваты">
+        <div id="statp-4951298-4" class="green"></div>
+        <div id="statp-4951298-20" class="green"></div>
+    </div>
+</div>
+<div class="pph1" style="display: none;">
+    <div class="pots_ind" title="Удары по воротам (в створ / всего)">
+        <div id="statp-4951298-ontarget" class="green"></div>
+        <div id="statp-4951298-shots" class="green"></div>
+    </div>
+</div>
+<div style="cursor: help;" class="pps1" title="Скилл">98</div>
+            </td>
+            </tr>
+                        </tbody></table>
+
+В общем ты не изучил страницу от слова совсем
+Каждую страницу которую ты активируешь для чего либо ты должен изучить, и уже после задействовать только те блоки и кнопки которые нужны, а не просто по своему усмотрению нашел первое и остановился, изучил, прикинул, использовал. 
