@@ -9,6 +9,10 @@ class MoraleAIBotBase extends PlayerBase
 
     void MoraleAIBotBase()
     {
+        RegisterNetSyncVariableFloat("m_Morale", 0.0, 100.0);
+        RegisterNetSyncVariableBool("m_IsTiedUp");
+        RegisterNetSyncVariableBool("m_Interrogated");
+
         m_Morale = MoraleAIConfig.Get().StartingMorale;
         m_State = MoraleAIState.AGGRESSIVE;
         m_IsTiedUp = false;
@@ -19,15 +23,6 @@ class MoraleAIBotBase extends PlayerBase
             m_UpdateTimer = new Timer();
             m_UpdateTimer.Run(1.0, this, "UpdateAI", NULL, true);
         }
-    }
-
-    override void InitNetSyncVariables()
-    {
-        super.InitNetSyncVariables();
-
-        RegisterNetSyncVariableFloat("m_Morale", 0.0, 100.0);
-        RegisterNetSyncVariableBool("m_IsTiedUp");
-        RegisterNetSyncVariableBool("m_Interrogated");
     }
 
     void SetLeader(bool isLeader)
