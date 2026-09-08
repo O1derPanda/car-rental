@@ -32,7 +32,11 @@ modded class PlayerBase
         if (!m_DebugRootWidget)
         {
             m_DebugRootWidget = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/MoraleAIDebug.layout");
-            m_DebugTextWidget = MultilineTextWidget.Cast(m_DebugRootWidget.FindAnyWidget("DebugText"));
+            if (m_DebugRootWidget)
+            {
+                m_DebugRootWidget.Show(true);
+                m_DebugTextWidget = MultilineTextWidget.Cast(m_DebugRootWidget.FindAnyWidget("DebugText"));
+            }
         }
     }
 
@@ -48,7 +52,7 @@ modded class PlayerBase
 
         array<Object> objects = new array<Object>;
         array<CargoBase> proxyCargos = new array<CargoBase>;
-        GetGame().GetObjectsAtPosition(GetPosition(), 50.0, objects, proxyCargos);
+        GetGame().GetObjectsAtPosition(GetPosition(), 100.0, objects, proxyCargos);
 
         foreach (Object obj : objects)
         {
@@ -70,7 +74,7 @@ modded class PlayerBase
 
         if (botCount == 0)
         {
-            debugStr += "No bots in 50m radius.";
+            debugStr += "No bots in 100m radius.";
         }
 
         m_DebugTextWidget.SetText(debugStr);

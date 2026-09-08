@@ -83,18 +83,28 @@ class MoraleAIBotBase extends PlayerBase
         {
             Print("[MoraleAI] Bot has surrendered! Role: " + m_IsLeader.ToString() + " Morale: " + m_Morale.ToString());
 
-            // Drop weapon
+            // Drop weapon explicitly
             EntityAI weapon = GetHumanInventory().GetEntityInHands();
             if (weapon)
             {
-                ServerDropEntity(weapon);
+                if (GetInventory().CanDropEntityHere(weapon))
+                {
+                    GetInventory().DropEntity(InventoryMode.SERVER, this, weapon);
+                }
+                else
+                {
+                    ServerDropEntity(weapon);
+                }
             }
 
-            // Play surrender animation
-            // We use EmoteManager to initiate the surrender state safely
+            // Play surrender animation or fallback to crouch
             if (GetEmoteManager())
             {
                 GetEmoteManager().CreateEmoteCBFromMenu(EmoteConstants.ID_EMOTE_SURRENDER);
+            }
+            else
+            {
+                GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_CROUCH);
             }
 
             // Here we would implement the actual AI stop logic

@@ -14,16 +14,24 @@ modded class ActionRestrainTarget
         {
             if (bot.IsAlive())
             {
-                // For testing/reliability on client: we check if the bot doesn't have a weapon in hands
-                // which implies they have dropped it (surrendered). Server validates actual morale.
-                bool hasWeapon = false;
-                EntityAI weapon = bot.GetHumanInventory().GetEntityInHands();
-                if (weapon && weapon.IsWeapon())
+                // Check if the bot has surrendered based on synced morale OR if it dropped its weapon
+                bool surrendered = false;
+                if (bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold)
                 {
-                    hasWeapon = true;
+                    surrendered = true;
+                }
+                else
+                {
+                    bool hasWeapon = false;
+                    EntityAI weapon = bot.GetHumanInventory().GetEntityInHands();
+                    if (weapon && weapon.IsWeapon())
+                    {
+                        hasWeapon = true;
+                    }
+                    if (!hasWeapon) surrendered = true;
                 }
 
-                if (!hasWeapon)
+                if (surrendered)
                 {
                     if (item.ConfigGetBool("canRestrain") || item.IsInherited(Rope) || item.IsInherited(DuctTape))
                     {
