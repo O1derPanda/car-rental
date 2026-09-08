@@ -1,18 +1,22 @@
 modded class PlayerBase
 {
     private ref InterrogationMenu m_MoraleInterrogationMenu;
-    private ref map<vector, Widget> m_StashWaypoints;
+    private ref array<ref MoraleAIWaypoint> m_StashWaypoints;
     private ref Timer m_WaypointUpdateTimer;
 
-    override void OnInit()
+    override void EEInit()
     {
-        super.OnInit();
+        super.EEInit();
 
         if (!GetGame().IsServer() || !GetGame().IsMultiplayer())
         {
-            m_StashWaypoints = new map<vector, Widget>();
-            m_WaypointUpdateTimer = new Timer();
-            m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
+            // Only initialize the UI timer if this is the controlled local player
+            if (IsControlledPlayer())
+            {
+                m_StashWaypoints = new array<ref MoraleAIWaypoint>();
+                m_WaypointUpdateTimer = new Timer();
+                m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
+            }
         }
     }
 
@@ -109,7 +113,7 @@ modded class PlayerBase
     void ReceiveStashWaypoint(vector wpPos)
     {
         Widget wpWidget = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/WaypointMarker.layout");
-        m_StashWaypoints.Insert(wpPos, wpWidget);
+        m_StashWaypoints.Insert(new MoraleAIWaypoint(wpPos, wpWidget));
         Print("[MoraleAI] Received stash waypoint at: " + wpPos.ToString());
     }
 
@@ -119,8 +123,11 @@ modded class PlayerBase
 
         for (int i = 0; i < m_StashWaypoints.Count(); i++)
         {
-            vector wp = m_StashWaypoints.GetKey(i);
-            Widget wpWidget = m_StashWaypoints.GetElement(i);
+            MoraleAIWaypoint waypoint = m_StashWaypoints.Get(i);
+            if (!waypoint || !waypoint.widget) continue;
+
+            vector wp = waypoint.position;
+            Widget wpWidget = waypoint.widget;
 
             vector screenPos;
             vector camPos = GetGame().GetCurrentCameraPosition();
@@ -142,7 +149,7 @@ modded class PlayerBase
                     if (textW)
                     {
                         float distance = vector.Distance(camPos, wp);
-                        textW.SetText(distance.ToString() + "m");
+                        textW.SetText(Math.Round(distance).ToString() + "m");
                     }
                 }
                 else
