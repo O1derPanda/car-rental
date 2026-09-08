@@ -46,7 +46,8 @@ class ActionInterrogateBot: ActionContinuousBase
         MoraleAIBotBase bot = MoraleAIBotBase.Cast(action_data.m_Target.GetObject());
         if (bot)
         {
-            bot.SetInterrogated(true);
+            // Do NOT set interrogated here, otherwise the server will block the subsequent RPC request.
+            // The state is set internally inside ProcessInterrogation after the player clicks "Attempt"
 
             // Send RPC to client to open Interrogation GUI
             ScriptRPC rpc = new ScriptRPC();

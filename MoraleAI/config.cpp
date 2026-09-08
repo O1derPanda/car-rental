@@ -33,8 +33,7 @@ class CfgMods
 		dependencies[]=
 		{
 			"Game",
-			"World",
-			"Mission"
+			"World"
 		};
 		class defs
 		{
@@ -52,14 +51,6 @@ class CfgMods
 				files[]=
 				{
 					"MoraleAI/Scripts/4_World"
-				};
-			};
-			class missionScriptModule
-			{
-				value="";
-				files[]=
-				{
-					"MoraleAI/Scripts/5_Mission"
 				};
 			};
 		};
