@@ -17,6 +17,11 @@ class MoraleAIBotBase extends PlayerBase
         m_State = MoraleAIState.AGGRESSIVE;
         m_IsTiedUp = false;
         m_Interrogated = false;
+    }
+
+    override void EEInit()
+    {
+        super.EEInit();
 
         if (GetGame().IsServer())
         {
@@ -87,14 +92,7 @@ class MoraleAIBotBase extends PlayerBase
             EntityAI weapon = GetHumanInventory().GetEntityInHands();
             if (weapon)
             {
-                if (GetInventory().CanDropEntityHere(weapon))
-                {
-                    GetInventory().DropEntity(InventoryMode.SERVER, this, weapon);
-                }
-                else
-                {
-                    ServerDropEntity(weapon);
-                }
+                ServerDropEntity(weapon);
             }
 
             // Play surrender animation or fallback to crouch

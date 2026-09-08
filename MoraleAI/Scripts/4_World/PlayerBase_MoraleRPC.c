@@ -15,15 +15,22 @@ modded class PlayerBase
 
         if (GetGame().IsClient())
         {
-            if (IsControlledPlayer())
-            {
-                m_StashWaypoints = new array<ref MoraleAIWaypoint>();
-                m_WaypointUpdateTimer = new Timer();
-                m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
+            // We use GetGame().GetCallQueue() instead of a persistent Timer in EEInit
+            // to ensure it executes securely without Null Pointer Exceptions if IsControlledPlayer is delayed.
+            GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.InitTimers, 2000, false);
+        }
+    }
 
-                m_DebugUpdateTimer = new Timer();
-                m_DebugUpdateTimer.Run(0.5, this, "UpdateDebugPanel", NULL, true);
-            }
+    void InitTimers()
+    {
+        if (IsControlledPlayer())
+        {
+            m_StashWaypoints = new array<ref MoraleAIWaypoint>();
+            m_WaypointUpdateTimer = new Timer();
+            m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
+
+            m_DebugUpdateTimer = new Timer();
+            m_DebugUpdateTimer.Run(0.5, this, "UpdateDebugPanel", NULL, true);
         }
     }
 
