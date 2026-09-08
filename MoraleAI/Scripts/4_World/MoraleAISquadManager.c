@@ -22,8 +22,10 @@ class MoraleAISquadManager
             {
                 spawnPos[0] = spawnPos[0] + Math.RandomFloat(-3.0, 3.0);
                 spawnPos[2] = spawnPos[2] + Math.RandomFloat(-3.0, 3.0);
-                spawnPos[1] = GetGame().SurfaceY(spawnPos[0], spawnPos[2]);
             }
+
+            // Ensure Y is mapped to terrain surface for everyone
+            spawnPos[1] = GetGame().SurfaceY(spawnPos[0], spawnPos[2]);
 
             // Spawn bot (using our custom class)
             MoraleAIBotBase bot = MoraleAIBotBase.Cast(GetGame().CreateObject("MoraleAIBotBase", spawnPos));

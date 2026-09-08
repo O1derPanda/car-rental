@@ -12,18 +12,23 @@ modded class ActionRestrainTarget
         MoraleAIBotBase bot = MoraleAIBotBase.Cast(target.GetObject());
         if (bot)
         {
-            // Only allow restraining if the item is capable of doing so
-            // In a fully robust mod, you would check `item.IsKindOf("Rope")` etc.,
-            // but relying on standard dayz restrain items is fine if the modded class allows it.
-            // However, a simple IsInherited(ItemBase) is too broad. We'll enforce the vanilla check first.
-
-            if (bot.IsAlive() && bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold)
+            if (bot.IsAlive())
             {
-                // DayZ's vanilla ActionCondition for Restrain checks if the target is a player and isn't already restrained.
-                // We bypass the player check for our bot, but we must manually enforce that the item is valid.
-                if (item.ConfigGetBool("canRestrain") || item.IsInherited(Rope) || item.IsInherited(DuctTape))
+                // For testing/reliability on client: we check if the bot doesn't have a weapon in hands
+                // which implies they have dropped it (surrendered). Server validates actual morale.
+                bool hasWeapon = false;
+                EntityAI weapon = bot.GetHumanInventory().GetEntityInHands();
+                if (weapon && weapon.IsWeapon())
                 {
-                    return true;
+                    hasWeapon = true;
+                }
+
+                if (!hasWeapon)
+                {
+                    if (item.ConfigGetBool("canRestrain") || item.IsInherited(Rope) || item.IsInherited(DuctTape))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

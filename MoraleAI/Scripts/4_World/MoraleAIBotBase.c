@@ -9,10 +9,6 @@ class MoraleAIBotBase extends PlayerBase
 
     void MoraleAIBotBase()
     {
-        RegisterNetSyncVariableFloat("m_Morale", 0.0, 100.0);
-        RegisterNetSyncVariableBool("m_IsTiedUp");
-        RegisterNetSyncVariableBool("m_Interrogated");
-
         m_Morale = MoraleAIConfig.Get().StartingMorale;
         m_State = MoraleAIState.AGGRESSIVE;
         m_IsTiedUp = false;
@@ -25,6 +21,15 @@ class MoraleAIBotBase extends PlayerBase
         }
     }
 
+    override void InitNetSyncVariables()
+    {
+        super.InitNetSyncVariables();
+
+        RegisterNetSyncVariableFloat("m_Morale", 0.0, 100.0);
+        RegisterNetSyncVariableBool("m_IsTiedUp");
+        RegisterNetSyncVariableBool("m_Interrogated");
+    }
+
     void SetLeader(bool isLeader)
     {
         m_IsLeader = isLeader;
@@ -32,8 +37,11 @@ class MoraleAIBotBase extends PlayerBase
         if (m_IsLeader)
         {
             // Equip visual distinction for leader, e.g. an armband or hat
-            // This is a placeholder for actual item spawning
-            GetInventory().CreateInInventory("Armband_Red");
+            EntityAI armband = GetInventory().CreateInInventory("Armband_Red");
+            if (!armband)
+            {
+                GetInventory().CreateAttachment("Armband_Red");
+            }
         }
     }
 

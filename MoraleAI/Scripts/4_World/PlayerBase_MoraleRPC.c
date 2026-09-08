@@ -4,19 +4,15 @@ modded class PlayerBase
     private ref array<ref MoraleAIWaypoint> m_StashWaypoints;
     private ref Timer m_WaypointUpdateTimer;
 
-    override void EEInit()
+    override void Init()
     {
-        super.EEInit();
+        super.Init();
 
-        if (!GetGame().IsServer() || !GetGame().IsMultiplayer())
+        if (GetGame().IsClient())
         {
-            // Only initialize the UI timer if this is the controlled local player
-            if (IsControlledPlayer())
-            {
-                m_StashWaypoints = new array<ref MoraleAIWaypoint>();
-                m_WaypointUpdateTimer = new Timer();
-                m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
-            }
+            m_StashWaypoints = new array<ref MoraleAIWaypoint>();
+            m_WaypointUpdateTimer = new Timer();
+            m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
         }
     }
 
@@ -120,6 +116,7 @@ modded class PlayerBase
     void UpdateWaypoints()
     {
         if (!m_StashWaypoints || m_StashWaypoints.Count() == 0) return;
+        if (!IsControlledPlayer()) return;
 
         for (int i = 0; i < m_StashWaypoints.Count(); i++)
         {
