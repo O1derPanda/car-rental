@@ -4,16 +4,76 @@ modded class PlayerBase
     private ref array<ref MoraleAIWaypoint> m_StashWaypoints;
     private ref Timer m_WaypointUpdateTimer;
 
-    override void Init()
+    // Debug UI
+    private Widget m_DebugRootWidget;
+    private MultilineTextWidget m_DebugTextWidget;
+    private ref Timer m_DebugUpdateTimer;
+
+    override void EEInit()
     {
-        super.Init();
+        super.EEInit();
 
         if (GetGame().IsClient())
         {
-            m_StashWaypoints = new array<ref MoraleAIWaypoint>();
-            m_WaypointUpdateTimer = new Timer();
-            m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
+            if (IsControlledPlayer())
+            {
+                m_StashWaypoints = new array<ref MoraleAIWaypoint>();
+                m_WaypointUpdateTimer = new Timer();
+                m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
+
+                m_DebugUpdateTimer = new Timer();
+                m_DebugUpdateTimer.Run(0.5, this, "UpdateDebugPanel", NULL, true);
+            }
         }
+    }
+
+    void InitDebugPanel()
+    {
+        if (!m_DebugRootWidget)
+        {
+            m_DebugRootWidget = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/MoraleAIDebug.layout");
+            m_DebugTextWidget = MultilineTextWidget.Cast(m_DebugRootWidget.FindAnyWidget("DebugText"));
+        }
+    }
+
+    void UpdateDebugPanel()
+    {
+        if (!IsControlledPlayer()) return;
+        InitDebugPanel();
+
+        if (!m_DebugTextWidget) return;
+
+        string debugStr = "Nearby Bots:\n\n";
+        int botCount = 0;
+
+        array<Object> objects = new array<Object>;
+        array<CargoBase> proxyCargos = new array<CargoBase>;
+        GetGame().GetObjectsAtPosition(GetPosition(), 50.0, objects, proxyCargos);
+
+        foreach (Object obj : objects)
+        {
+            MoraleAIBotBase bot = MoraleAIBotBase.Cast(obj);
+            if (bot)
+            {
+                botCount++;
+                string role = "Shooter";
+                if (bot.IsLeader()) role = "Leader";
+
+                string stateStr = "Alive";
+                if (!bot.IsAlive()) stateStr = "Dead";
+                else if (bot.IsTiedUp()) stateStr = "Tied Up";
+                else if (bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold) stateStr = "Surrendered";
+
+                debugStr += string.Format("[%1] Morale: %2 | State: %3\n", role, bot.GetMorale().ToString(), stateStr);
+            }
+        }
+
+        if (botCount == 0)
+        {
+            debugStr += "No bots in 50m radius.";
+        }
+
+        m_DebugTextWidget.SetText(debugStr);
     }
 
     override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)

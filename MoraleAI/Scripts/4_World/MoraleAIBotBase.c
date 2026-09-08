@@ -81,11 +81,13 @@ class MoraleAIBotBase extends PlayerBase
     {
         if (GetGame().IsServer())
         {
+            Print("[MoraleAI] Bot has surrendered! Role: " + m_IsLeader.ToString() + " Morale: " + m_Morale.ToString());
+
             // Drop weapon
             EntityAI weapon = GetHumanInventory().GetEntityInHands();
             if (weapon)
             {
-                GetInventory().DropEntity(InventoryMode.SERVER, this, weapon);
+                ServerDropEntity(weapon);
             }
 
             // Play surrender animation
@@ -143,6 +145,7 @@ class MoraleAIBotBase extends PlayerBase
         // Apply hit penalty to self
         float penalty = Math.RandomFloat(MoraleAIConfig.Get().Penalty_HitMax, MoraleAIConfig.Get().Penalty_HitMin);
         SetMorale(GetMorale() + penalty);
+        Print("[MoraleAI] Bot Hit! Applied Penalty: " + penalty.ToString() + " | New Morale: " + GetMorale().ToString());
 
         // Apply morale penalty to squad members
         if (m_Squad)
@@ -174,6 +177,8 @@ class MoraleAIBotBase extends PlayerBase
             {
                 penalty = Math.RandomFloat(MoraleAIConfig.Get().Penalty_ShooterDeathMax, MoraleAIConfig.Get().Penalty_ShooterDeathMin);
             }
+
+            Print("[MoraleAI] Bot Killed! Leader: " + IsLeader().ToString() + " | Squad Penalty Applied: " + penalty.ToString());
 
             foreach (MoraleAIBotBase member : m_Squad.GetMembers())
             {
