@@ -86,8 +86,11 @@ class MoraleAIBotBase extends SurvivorBase
             }
 
             // Play surrender animation
-            // We use StartCommand_Action to initiate the animation state safely
-            StartCommand_Action(DayZPlayerConstants.CMD_ACTIONFB_SURRENDER, 0, 0);
+            // We use EmoteManager to initiate the surrender state safely
+            if (GetEmoteManager())
+            {
+                GetEmoteManager().CreateEmoteCBFromMenu(EmoteConstants.ID_EMOTE_SURRENDER);
+            }
 
             // Here we would implement the actual AI stop logic
             // (e.g. clear pathfinding, stop shooting)

@@ -15,20 +15,11 @@ modded class MissionGameplay
         m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true); // Update ~60fps
     }
 
-    override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
+    void ReceiveStashWaypoint(vector wpPos)
     {
-        super.OnRPC(sender, target, rpc_type, ctx);
-
-        if (rpc_type == MoraleAIRPC.RECEIVE_STASH_WAYPOINT)
-        {
-            vector wpPos;
-            if (ctx.Read(wpPos))
-            {
-                Widget wpWidget = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/WaypointMarker.layout");
-                m_StashWaypoints.Insert(wpPos, wpWidget);
-                Print("[MoraleAI] Received stash waypoint at: " + wpPos.ToString());
-            }
-        }
+        Widget wpWidget = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/WaypointMarker.layout");
+        m_StashWaypoints.Insert(wpPos, wpWidget);
+        Print("[MoraleAI] Received stash waypoint at: " + wpPos.ToString());
     }
 
     void UpdateWaypoints()

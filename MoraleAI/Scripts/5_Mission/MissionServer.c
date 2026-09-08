@@ -14,19 +14,6 @@ modded class MissionServer
         m_ActiveSquads.Insert(squad);
     }
 
-    override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
-    {
-        super.OnRPC(sender, target, rpc_type, ctx);
-
-        if (rpc_type == MoraleAIRPC.SERVER_PROCESS_INTERROGATION)
-        {
-            MoraleAIBotBase bot;
-            if (ctx.Read(bot))
-            {
-                ProcessInterrogation(bot, sender);
-            }
-        }
-    }
 
     void ProcessInterrogation(MoraleAIBotBase bot, PlayerIdentity sender)
     {

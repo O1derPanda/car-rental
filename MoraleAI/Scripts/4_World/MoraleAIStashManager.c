@@ -56,7 +56,8 @@ class MoraleAIStashManager
 
             // Object collision check
             array<Object> objects = new array<Object>;
-            GetGame().GetObjectsAtPosition(testPos, 3.0, objects, NULL); // Check 3m radius for existing objects
+            array<CargoBase> proxyCargos = new array<CargoBase>;
+            GetGame().GetObjectsAtPosition(testPos, 3.0, objects, proxyCargos); // Check 3m radius for existing objects
 
             bool isColliding = false;
             foreach (Object obj : objects)
