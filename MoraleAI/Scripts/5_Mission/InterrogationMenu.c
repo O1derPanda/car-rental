@@ -60,7 +60,9 @@ class InterrogationMenu extends UIScriptedMenu
         // The actual random chance check will be done on the server for security
         ScriptRPC rpc = new ScriptRPC();
         rpc.Write(m_BotTarget);
-        rpc.Send(null, MoraleAIRPC.SERVER_PROCESS_INTERROGATION, true, null);
+
+        PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+        rpc.Send(player, MoraleAIRPC.SERVER_PROCESS_INTERROGATION, true, null);
         Close();
     }
 }

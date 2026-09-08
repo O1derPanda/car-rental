@@ -67,7 +67,7 @@ class MoraleAIConfig
 
         if (FileExist(configPath))
         {
-            MoraleAIConfig tempConfig;
+            MoraleAIConfig tempConfig = new MoraleAIConfig();
             JsonFileLoader<MoraleAIConfig>.JsonLoadFile(configPath, tempConfig);
 
             this.SquadSize = tempConfig.SquadSize;

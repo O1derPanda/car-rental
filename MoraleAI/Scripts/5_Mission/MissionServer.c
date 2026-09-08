@@ -10,24 +10,19 @@ modded class MissionServer
         // Example: Spawn a squad at a specific coordinate for testing
         // You would typically hook this up to an event system or territory trigger
         MoraleAISquadManager squad = new MoraleAISquadManager();
-        squad.SpawnSquad("7500 0 7500");
+        squad.SpawnSquad("7500 0 7500".ToVector());
         m_ActiveSquads.Insert(squad);
     }
 
 
-    void ProcessInterrogation(MoraleAIBotBase bot, PlayerIdentity sender)
+    void ProcessInterrogation(MoraleAIBotBase bot, PlayerBase player)
     {
         if (!bot || !bot.IsAlive()) return;
 
         // Security check: Only allow if tied up and close to player
         if (!bot.IsTiedUp() || bot.IsInterrogated()) return;
 
-        PlayerBase player;
-        if (Class.CastTo(player, sender.GetPlayer()))
-        {
-            if (vector.Distance(player.GetPosition(), bot.GetPosition()) > 5.0) return;
-        }
-        else
+        if (!player || vector.Distance(player.GetPosition(), bot.GetPosition()) > 5.0)
         {
             return;
         }
@@ -49,7 +44,7 @@ modded class MissionServer
         if (roll <= chance)
         {
             // Success: Generate Stash
-            MoraleAIStashManager.GenerateStash(bot.GetPosition(), sender);
+            MoraleAIStashManager.GenerateStash(bot.GetPosition(), player.GetIdentity());
         }
 
         // Kill the bot or just keep them silent

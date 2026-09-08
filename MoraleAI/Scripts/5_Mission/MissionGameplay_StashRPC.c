@@ -26,8 +26,11 @@ modded class MissionGameplay
     {
         if (!m_StashWaypoints || m_StashWaypoints.Count() == 0) return;
 
-        foreach (vector wp, Widget wpWidget : m_StashWaypoints)
+        for (int i = 0; i < m_StashWaypoints.Count(); i++)
         {
+            vector wp = m_StashWaypoints.GetKey(i);
+            Widget wpWidget = m_StashWaypoints.GetElement(i);
+
             vector screenPos;
             vector camPos = GetGame().GetCurrentCameraPosition();
             vector camDir = GetGame().GetCurrentCameraDirection();

@@ -22,7 +22,12 @@ class MoraleAIStashManager
                 // Send RPC to client to draw a 3D Waypoint
                 ScriptRPC rpc = new ScriptRPC();
                 rpc.Write(spawnPos);
-                rpc.Send(null, MoraleAIRPC.RECEIVE_STASH_WAYPOINT, true, playerIdentity);
+
+                PlayerBase player;
+                if (playerIdentity && Class.CastTo(player, playerIdentity.GetPlayer()))
+                {
+                    rpc.Send(player, MoraleAIRPC.RECEIVE_STASH_WAYPOINT, true, playerIdentity);
+                }
             }
         }
         else

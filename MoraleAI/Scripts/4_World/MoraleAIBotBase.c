@@ -1,4 +1,4 @@
-class MoraleAIBotBase extends SurvivorBase
+class MoraleAIBotBase extends PlayerBase
 {
     private bool m_IsLeader;
     private float m_Morale;
@@ -124,7 +124,7 @@ class MoraleAIBotBase extends SurvivorBase
         SetMorale(GetMorale() + regenAmt);
     }
 
-    private ref MoraleAISquadManager m_Squad;
+    private MoraleAISquadManager m_Squad;
 
     void SetSquad(MoraleAISquadManager squad)
     {

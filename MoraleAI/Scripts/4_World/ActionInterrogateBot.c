@@ -51,7 +51,7 @@ class ActionInterrogateBot: ActionContinuousBase
             // Send RPC to client to open Interrogation GUI
             ScriptRPC rpc = new ScriptRPC();
             rpc.Write(bot);
-            rpc.Send(null, MoraleAIRPC.OPEN_INTERROGATION_GUI, true, action_data.m_Player.GetIdentity());
+            rpc.Send(action_data.m_Player, MoraleAIRPC.OPEN_INTERROGATION_GUI, true, action_data.m_Player.GetIdentity());
         }
     }
 }
