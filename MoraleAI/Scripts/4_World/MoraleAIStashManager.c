@@ -1,6 +1,6 @@
 class MoraleAIStashManager
 {
-    static void GenerateStash(vector centerPos, PlayerIdentity playerIdentity)
+    static void GenerateStash(vector centerPos, PlayerBase player)
     {
         float radiusMin = MoraleAIConfig.Get().StashSpawnRadiusMin;
         float radiusMax = MoraleAIConfig.Get().StashSpawnRadiusMax;
@@ -20,13 +20,11 @@ class MoraleAIStashManager
                 tent.GetInventory().CreateInInventory("Canteen");
 
                 // Send RPC to client to draw a 3D Waypoint
-                ScriptRPC rpc = new ScriptRPC();
-                rpc.Write(spawnPos);
-
-                PlayerBase player;
-                if (playerIdentity && Class.CastTo(player, playerIdentity.GetPlayer()))
+                if (player && player.GetIdentity())
                 {
-                    rpc.Send(player, MoraleAIRPC.RECEIVE_STASH_WAYPOINT, true, playerIdentity);
+                    ScriptRPC rpc = new ScriptRPC();
+                    rpc.Write(spawnPos);
+                    rpc.Send(player, MoraleAIRPC.RECEIVE_STASH_WAYPOINT, true, player.GetIdentity());
                 }
             }
         }
