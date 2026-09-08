@@ -42,7 +42,7 @@ modded class MissionGameplay
             vector camDir = GetGame().GetCurrentCameraDirection();
 
             // Basic dot product to check if waypoint is in front of the camera
-            vector dirToWp = vector.Direction(camPos, wp).Normalized();
+            vector dirToWp = (wp - camPos).Normalized();
             if (vector.Dot(camDir, dirToWp) > 0)
             {
                 screenPos = GetGame().GetScreenPosRelative(wp);

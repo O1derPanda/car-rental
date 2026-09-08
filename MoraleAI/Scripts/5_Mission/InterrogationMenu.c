@@ -8,13 +8,6 @@ class InterrogationMenu extends UIScriptedMenu
     {
     }
 
-    void ~InterrogationMenu()
-    {
-        GetGame().GetUIManager().Back();
-        GetGame().GetInput().ResetGameFocus();
-        GetGame().GetMission().PlayerControlEnable(true);
-    }
-
     override Widget Init()
     {
         layoutRoot = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/InterrogationMenu.layout");
@@ -32,8 +25,17 @@ class InterrogationMenu extends UIScriptedMenu
     override void OnShow()
     {
         super.OnShow();
+        GetGame().GetUIManager().ShowCursor(true);
         GetGame().GetInput().ChangeGameFocus(1);
         GetGame().GetMission().PlayerControlDisable(INPUT_EXCLUDE_ALL);
+    }
+
+    override void OnHide()
+    {
+        super.OnHide();
+        GetGame().GetUIManager().ShowCursor(false);
+        GetGame().GetInput().ResetGameFocus();
+        GetGame().GetMission().PlayerControlEnable(true);
     }
 
     override bool OnClick(Widget w, int x, int y, int button)

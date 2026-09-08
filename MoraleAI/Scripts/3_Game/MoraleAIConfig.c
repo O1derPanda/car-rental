@@ -44,7 +44,13 @@ class MoraleAIConfig
         if (!m_Instance)
         {
             m_Instance = new MoraleAIConfig();
-            m_Instance.Load();
+
+            // Only server loads/saves from profile, clients use defaults unless synced
+            // (RPC sync for config is best practice, but for standalone prototype, defaults are safe)
+            if (GetGame() && GetGame().IsServer())
+            {
+                m_Instance.Load();
+            }
         }
         return m_Instance;
     }

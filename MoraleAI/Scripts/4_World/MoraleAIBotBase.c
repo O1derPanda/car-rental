@@ -9,6 +9,10 @@ class MoraleAIBotBase extends SurvivorBase
 
     void MoraleAIBotBase()
     {
+        RegisterNetSyncVariableFloat("m_Morale", 0.0, 100.0);
+        RegisterNetSyncVariableBool("m_IsTiedUp");
+        RegisterNetSyncVariableBool("m_Interrogated");
+
         m_Morale = MoraleAIConfig.Get().StartingMorale;
         m_State = MoraleAIState.AGGRESSIVE;
         m_IsTiedUp = false;
@@ -46,6 +50,7 @@ class MoraleAIBotBase extends SurvivorBase
     void SetMorale(float morale)
     {
         m_Morale = Math.Clamp(morale, 0.0, MoraleAIConfig.Get().MaxMorale);
+        SetSynchDirty();
         UpdateState();
     }
 
@@ -81,7 +86,9 @@ class MoraleAIBotBase extends SurvivorBase
             }
 
             // Play surrender animation
-            GetCommandModifier_Action().PlayAction("Surrender");
+            // We use StartCommand_Action to initiate the animation state safely
+            StartCommand_Action(DayZPlayerConstants.CMD_ACTIONFB_SURRENDER, 0, 0);
+
             // Here we would implement the actual AI stop logic
             // (e.g. clear pathfinding, stop shooting)
         }
@@ -182,6 +189,7 @@ class MoraleAIBotBase extends SurvivorBase
     void SetTiedUp(bool state)
     {
         m_IsTiedUp = state;
+        SetSynchDirty();
     }
 
     bool IsInterrogated()
@@ -192,5 +200,6 @@ class MoraleAIBotBase extends SurvivorBase
     void SetInterrogated(bool state)
     {
         m_Interrogated = state;
+        SetSynchDirty();
     }
 }

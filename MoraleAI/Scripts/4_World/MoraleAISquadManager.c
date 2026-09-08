@@ -30,6 +30,7 @@ class MoraleAISquadManager
             if (bot)
             {
                 m_SquadMembers.Insert(bot);
+                bot.SetSquad(this);
 
                 // Assign leader (first spawned)
                 if (i == 0)

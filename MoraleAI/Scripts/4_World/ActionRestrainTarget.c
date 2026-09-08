@@ -2,15 +2,25 @@ modded class ActionRestrainTarget
 {
     override bool ActionCondition(PlayerBase player, ActionTarget target, ItemBase item)
     {
-        if (super.ActionCondition(player, target, item)) return true;
+        // First check if player is holding a restraining item
+        if (!item || !item.IsInherited(ItemBase)) return false;
+
+        // Ensure the item is a valid restrain item (Rope, DuctTape, etc.)
+        // This is a simplified check, DayZ has specific classes for this but they all inherit from ItemBase
+        // We will rely on the base class condition for the item checks, but we need to override the target check
 
         MoraleAIBotBase bot = MoraleAIBotBase.Cast(target.GetObject());
-        if (bot && bot.IsAlive() && bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold)
+        if (bot)
         {
-            return true;
+            if (bot.IsAlive() && bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold)
+            {
+                return true;
+            }
+            return false;
         }
 
-        return false;
+        // Fallback to standard check for players
+        return super.ActionCondition(player, target, item);
     }
 
     override void OnFinishProgressServer(ActionData action_data)
