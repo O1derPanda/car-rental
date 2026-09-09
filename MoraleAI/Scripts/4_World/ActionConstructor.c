@@ -4,6 +4,7 @@ modded class ActionConstructor
     {
         super.RegisterActions(actions);
         actions.Insert(ActionInterrogateBot);
+        actions.Insert(ActionRestrainMoraleBot);
     }
 }
 
@@ -14,5 +15,6 @@ modded class PlayerBase
         super.SetActions(InputActionMap);
 
         AddAction(ActionInterrogateBot, InputActionMap);
+        AddAction(ActionRestrainMoraleBot, InputActionMap);
     }
 }

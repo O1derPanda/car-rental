@@ -214,13 +214,18 @@ class MoraleAIBotBase extends PlayerBase
             Print(dbgMsg);
             SendDebugChat(dbgMsg);
 
-            foreach (MoraleAIBotBase member : m_Squad.GetMembers())
+            // Create a copy of members to avoid modifying array while iterating
+            array<MoraleAIBotBase> membersCopy = new array<MoraleAIBotBase>;
+            membersCopy.Copy(m_Squad.GetMembers());
+
+            foreach (MoraleAIBotBase member : membersCopy)
             {
                 if (member && member != this && member.IsAlive())
                 {
                     member.SetMorale(member.GetMorale() + penalty);
                 }
             }
+
             m_Squad.RemoveMember(this);
         }
     }
