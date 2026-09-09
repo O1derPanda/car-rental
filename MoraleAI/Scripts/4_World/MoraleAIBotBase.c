@@ -8,17 +8,20 @@ class MoraleAIBotBase extends PlayerBase
     private ref Timer m_UpdateTimer;
     private bool m_IsTiedUp;
     private bool m_Interrogated;
+    private bool m_IsSurrendered;
 
     void MoraleAIBotBase()
     {
         RegisterNetSyncVariableFloat("m_Morale", 0.0, 100.0);
         RegisterNetSyncVariableBool("m_IsTiedUp");
         RegisterNetSyncVariableBool("m_Interrogated");
+        RegisterNetSyncVariableBool("m_IsSurrendered");
 
         m_Morale = MoraleAIConfig.Get().StartingMorale;
         m_State = MoraleAIState.AGGRESSIVE;
         m_IsTiedUp = false;
         m_Interrogated = false;
+        m_IsSurrendered = false;
     }
 
     override void EEInit()
@@ -98,13 +101,19 @@ class MoraleAIBotBase extends PlayerBase
     {
         if (GetGame().IsServer())
         {
-            Print("[MoraleAI] Bot has surrendered! Role: " + m_IsLeader.ToString() + " Morale: " + m_Morale.ToString());
+            m_IsSurrendered = true;
+            SetSynchDirty();
 
-            // Drop weapon explicitly
+            string dbgMsg = string.Format("[MoraleAI] Bot SURRENDERED! Role: %1 | Morale: %2", m_IsLeader.ToString(), m_Morale.ToString());
+            Print(dbgMsg);
+            SendDebugChat(dbgMsg);
+
+            // Drop weapon explicitly (forcibly un-equip and delete if ServerDrop fails)
             EntityAI weapon = GetHumanInventory().GetEntityInHands();
             if (weapon)
             {
-                ServerDropEntity(weapon);
+                GetInventory().DropEntity(InventoryMode.SERVER, this, weapon);
+                GetGame().ObjectDelete(weapon); // Bruteforce delete to guarantee unarmed state for testing
             }
 
             // Play surrender animation or fallback to crouch
@@ -233,6 +242,11 @@ class MoraleAIBotBase extends PlayerBase
                 }
             }
         }
+    }
+
+    bool IsSurrendered()
+    {
+        return m_IsSurrendered;
     }
 
     // Tied up state

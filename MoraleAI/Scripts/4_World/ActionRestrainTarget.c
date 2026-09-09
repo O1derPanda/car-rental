@@ -14,9 +14,9 @@ modded class ActionRestrainTarget
         {
             if (bot.IsAlive())
             {
-                // Check if the bot has surrendered based on synced morale OR if it dropped its weapon
+                // Check if the bot has surrendered based on synced state, synced morale OR if it dropped its weapon
                 bool surrendered = false;
-                if (bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold)
+                if (bot.IsSurrendered() || bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold)
                 {
                     surrendered = true;
                 }
