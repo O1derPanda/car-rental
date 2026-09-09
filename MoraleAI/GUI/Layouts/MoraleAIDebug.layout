@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<WindowWidgetClass root="1" width="1" height="1">
-    <PanelWidgetClass name="DebugPanel" width="0.25" height="0.4" halign="left" valign="top" pos_x="0.01" pos_y="0.3" color="99000000">
-        <TextWidgetClass name="DebugTitle" text="Morale AI Debug" width="1" height="0.1" halign="center" valign="top" text_halign="center" color="FF00FF00"/>
-        <MultilineTextWidgetClass name="DebugText" text="Waiting for bots..." width="0.9" height="0.85" halign="center" valign="bottom" text_proportion="0.5" wrap="1" exactpos="0"/>
-    </PanelWidgetClass>
-</WindowWidgetClass>

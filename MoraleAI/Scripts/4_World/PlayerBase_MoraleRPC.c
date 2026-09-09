@@ -4,11 +4,6 @@ modded class PlayerBase
     private ref array<ref MoraleAIWaypoint> m_StashWaypoints;
     private ref Timer m_WaypointUpdateTimer;
 
-    // Debug UI
-    private Widget m_DebugRootWidget;
-    private MultilineTextWidget m_DebugTextWidget;
-    private ref Timer m_DebugUpdateTimer;
-
     override void EEInit()
     {
         super.EEInit();
@@ -28,65 +23,7 @@ modded class PlayerBase
             m_StashWaypoints = new array<ref MoraleAIWaypoint>();
             m_WaypointUpdateTimer = new Timer();
             m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
-
-            m_DebugUpdateTimer = new Timer();
-            m_DebugUpdateTimer.Run(0.5, this, "UpdateDebugPanel", NULL, true);
         }
-    }
-
-    void InitDebugPanel()
-    {
-        if (!m_DebugRootWidget)
-        {
-            m_DebugRootWidget = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/MoraleAIDebug.layout");
-            if (m_DebugRootWidget)
-            {
-                m_DebugRootWidget.Show(true);
-                m_DebugTextWidget = MultilineTextWidget.Cast(m_DebugRootWidget.FindAnyWidget("DebugText"));
-            }
-        }
-    }
-
-    void UpdateDebugPanel()
-    {
-        if (!IsControlledPlayer()) return;
-        InitDebugPanel();
-
-        if (!m_DebugTextWidget) return;
-
-        string debugStr = "Active Bots:\n\n";
-        int botCount = 0;
-
-        if (MoraleAIBotBase.m_AllBots)
-        {
-            foreach (MoraleAIBotBase bot : MoraleAIBotBase.m_AllBots)
-            {
-                if (bot)
-                {
-                    // Only show bots within 100m distance from player
-                    if (vector.Distance(GetPosition(), bot.GetPosition()) <= 100.0)
-                    {
-                        botCount++;
-                        string role = "Shooter";
-                        if (bot.IsLeader()) role = "Leader";
-
-                        string stateStr = "Alive";
-                        if (!bot.IsAlive()) stateStr = "Dead";
-                        else if (bot.IsTiedUp()) stateStr = "Tied Up";
-                        else if (bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold) stateStr = "Surrendered";
-
-                        debugStr += string.Format("[%1] Morale: %2 | State: %3\n", role, bot.GetMorale().ToString(), stateStr);
-                    }
-                }
-            }
-        }
-
-        if (botCount == 0)
-        {
-            debugStr += "No active bots in 100m radius.";
-        }
-
-        m_DebugTextWidget.SetText(debugStr);
     }
 
     override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
@@ -120,6 +57,14 @@ modded class PlayerBase
                 if (ctx.Read(wpPos))
                 {
                     ReceiveStashWaypoint(wpPos);
+                }
+            }
+            else if (rpc_type == MoraleAIRPC.DEBUG_CHAT_MESSAGE)
+            {
+                string chatMsg;
+                if (ctx.Read(chatMsg))
+                {
+                    GetGame().ChatPlayer(chatMsg);
                 }
             }
         }

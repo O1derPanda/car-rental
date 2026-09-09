@@ -165,7 +165,10 @@ class MoraleAIBotBase extends PlayerBase
         // Apply hit penalty to self
         float penalty = Math.RandomFloat(MoraleAIConfig.Get().Penalty_HitMax, MoraleAIConfig.Get().Penalty_HitMin);
         SetMorale(GetMorale() + penalty);
-        Print("[MoraleAI] Bot Hit! Applied Penalty: " + penalty.ToString() + " | New Morale: " + GetMorale().ToString());
+
+        string dbgMsg = string.Format("[MoraleAI] Bot Hit! Penalty: %1 | New Morale: %2", penalty.ToString(), GetMorale().ToString());
+        Print(dbgMsg);
+        SendDebugChat(dbgMsg);
 
         // Apply morale penalty to squad members
         if (m_Squad)
@@ -198,7 +201,9 @@ class MoraleAIBotBase extends PlayerBase
                 penalty = Math.RandomFloat(MoraleAIConfig.Get().Penalty_ShooterDeathMax, MoraleAIConfig.Get().Penalty_ShooterDeathMin);
             }
 
-            Print("[MoraleAI] Bot Killed! Leader: " + IsLeader().ToString() + " | Squad Penalty Applied: " + penalty.ToString());
+            string dbgMsg = string.Format("[MoraleAI] Bot Killed! Leader: %1 | Squad Penalty Applied: %2", IsLeader().ToString(), penalty.ToString());
+            Print(dbgMsg);
+            SendDebugChat(dbgMsg);
 
             foreach (MoraleAIBotBase member : m_Squad.GetMembers())
             {
@@ -208,6 +213,25 @@ class MoraleAIBotBase extends PlayerBase
                 }
             }
             m_Squad.RemoveMember(this);
+        }
+    }
+
+    void SendDebugChat(string msg)
+    {
+        if (GetGame().IsServer())
+        {
+            array<Man> players = new array<Man>;
+            GetGame().GetPlayers(players);
+            foreach (Man p : players)
+            {
+                PlayerBase pb = PlayerBase.Cast(p);
+                if (pb && pb.GetIdentity())
+                {
+                    ScriptRPC rpc = new ScriptRPC();
+                    rpc.Write(msg);
+                    rpc.Send(pb, MoraleAIRPC.DEBUG_CHAT_MESSAGE, true, pb.GetIdentity());
+                }
+            }
         }
     }
 
