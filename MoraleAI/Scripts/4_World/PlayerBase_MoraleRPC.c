@@ -54,34 +54,36 @@ modded class PlayerBase
 
         if (!m_DebugTextWidget) return;
 
-        string debugStr = "Nearby Bots:\n\n";
+        string debugStr = "Active Bots:\n\n";
         int botCount = 0;
 
-        array<Object> objects = new array<Object>;
-        array<CargoBase> proxyCargos = new array<CargoBase>;
-        GetGame().GetObjectsAtPosition(GetPosition(), 100.0, objects, proxyCargos);
-
-        foreach (Object obj : objects)
+        if (MoraleAIBotBase.m_AllBots)
         {
-            MoraleAIBotBase bot = MoraleAIBotBase.Cast(obj);
-            if (bot)
+            foreach (MoraleAIBotBase bot : MoraleAIBotBase.m_AllBots)
             {
-                botCount++;
-                string role = "Shooter";
-                if (bot.IsLeader()) role = "Leader";
+                if (bot)
+                {
+                    // Only show bots within 100m distance from player
+                    if (vector.Distance(GetPosition(), bot.GetPosition()) <= 100.0)
+                    {
+                        botCount++;
+                        string role = "Shooter";
+                        if (bot.IsLeader()) role = "Leader";
 
-                string stateStr = "Alive";
-                if (!bot.IsAlive()) stateStr = "Dead";
-                else if (bot.IsTiedUp()) stateStr = "Tied Up";
-                else if (bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold) stateStr = "Surrendered";
+                        string stateStr = "Alive";
+                        if (!bot.IsAlive()) stateStr = "Dead";
+                        else if (bot.IsTiedUp()) stateStr = "Tied Up";
+                        else if (bot.GetMorale() <= MoraleAIConfig.Get().SurrenderThreshold) stateStr = "Surrendered";
 
-                debugStr += string.Format("[%1] Morale: %2 | State: %3\n", role, bot.GetMorale().ToString(), stateStr);
+                        debugStr += string.Format("[%1] Morale: %2 | State: %3\n", role, bot.GetMorale().ToString(), stateStr);
+                    }
+                }
             }
         }
 
         if (botCount == 0)
         {
-            debugStr += "No bots in 100m radius.";
+            debugStr += "No active bots in 100m radius.";
         }
 
         m_DebugTextWidget.SetText(debugStr);

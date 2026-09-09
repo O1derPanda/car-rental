@@ -1,5 +1,7 @@
 class MoraleAIBotBase extends PlayerBase
 {
+    static ref array<MoraleAIBotBase> m_AllBots = new array<MoraleAIBotBase>();
+
     private bool m_IsLeader;
     private float m_Morale;
     private MoraleAIState m_State;
@@ -23,10 +25,20 @@ class MoraleAIBotBase extends PlayerBase
     {
         super.EEInit();
 
+        m_AllBots.Insert(this);
+
         if (GetGame().IsServer())
         {
             m_UpdateTimer = new Timer();
             m_UpdateTimer.Run(1.0, this, "UpdateAI", NULL, true);
+        }
+    }
+
+    void ~MoraleAIBotBase()
+    {
+        if (m_AllBots)
+        {
+            m_AllBots.RemoveItem(this);
         }
     }
 
