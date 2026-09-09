@@ -11,7 +11,9 @@ class ActionRestrainMoraleBot: ActionContinuousBase
     void ActionRestrainMoraleBot()
     {
         m_CallbackClass = ActionRestrainMoraleBotCB;
-        m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_RESTRAIN;
+        // CMD_ACTIONFB_RESTRAINTARGET requires an active player network target in vanilla DayZ, which causes instant aborts on bots.
+        // We use CMD_ACTIONFB_INTERACT which performs a generic continuous animation safely on any object.
+        m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
         m_FullBody = true;
         m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
         m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
@@ -37,8 +39,11 @@ class ActionRestrainMoraleBot: ActionContinuousBase
             {
                 if (!bot.IsTiedUp())
                 {
-                    // Check if the item is a valid restrain item (Rope, DuctTape, Handcuffs, etc)
-                    if (item.ConfigGetBool("canRestrain") || item.IsInherited(Rope) || item.IsInherited(DuctTape))
+                    // More robust item checking
+                    string itemType = item.GetType();
+                    itemType.ToLower();
+
+                    if (itemType.Contains("rope") || itemType.Contains("ducttape") || itemType.Contains("handcuffs") || itemType.Contains("metalwire") || item.ConfigGetBool("canRestrain"))
                     {
                         return true;
                     }
@@ -54,6 +59,13 @@ class ActionRestrainMoraleBot: ActionContinuousBase
         if (bot)
         {
             bot.SetTiedUp(true);
+
+            // Provide visual feedback that the bot is tied up
+            if (bot.GetCommand_Move())
+            {
+                bot.GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_PRONE);
+            }
+
             action_data.m_MainItem.Delete(); // Consume the restraint item
         }
     }
