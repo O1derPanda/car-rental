@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WindowWidgetClass root="1" width="1" height="1">
-    <PanelWidgetClass name="Background" width="0.3" height="0.3" halign="center" valign="center" color="0 0 0 0.8">
+    <PanelWidgetClass name="Background" width="0.3" height="0.3" halign="center" valign="center" color="CC000000">
         <TextWidgetClass name="Title" text="Interrogation" width="1" height="0.15" halign="center" valign="top" text_halign="center"/>
         <TextWidgetClass name="InfoText" text="Attempt to extract stash coordinates?" width="0.9" height="0.4" halign="center" valign="center" text_halign="center" text_valign="center" wrap="1"/>
         <ButtonWidgetClass name="BtnInterrogate" text="Attempt Interrogation" width="0.8" height="0.15" halign="center" valign="bottom" pos_y="0.2"/>

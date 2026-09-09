@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WindowWidgetClass root="1" width="1" height="1">
-    <ImageWidgetClass name="WaypointIcon" width="32" height="32" halign="center" valign="center" color="1 0 0 1" image0="set:dayz_gui image:circle"/>
-    <TextWidgetClass name="DistanceText" text="0m" width="100" height="20" halign="center" valign="center" pos_y="20" text_halign="center" color="1 0 0 1"/>
+    <ImageWidgetClass name="WaypointIcon" width="32" height="32" halign="center" valign="center" color="FFFF0000" image0="set:dayz_gui image:circle"/>
+    <TextWidgetClass name="DistanceText" text="0m" width="100" height="20" halign="center" valign="center" pos_y="20" text_halign="center" color="FFFF0000"/>
 </WindowWidgetClass>
