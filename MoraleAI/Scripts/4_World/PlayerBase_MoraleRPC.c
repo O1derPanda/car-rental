@@ -127,8 +127,11 @@ modded class PlayerBase
     void ReceiveStashWaypoint(vector wpPos)
     {
         Widget wpWidget = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/WaypointMarker.layout");
-        m_StashWaypoints.Insert(new MoraleAIWaypoint(wpPos, wpWidget));
-        Print("[MoraleAI] Received stash waypoint at: " + wpPos.ToString());
+        if (wpWidget)
+        {
+            m_StashWaypoints.Insert(new MoraleAIWaypoint(wpPos, wpWidget));
+            Print("[MoraleAI] Received stash waypoint at: " + wpPos.ToString());
+        }
     }
 
     void UpdateWaypoints()

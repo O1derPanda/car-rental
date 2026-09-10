@@ -62,7 +62,7 @@ class InterrogationMenu extends UIScriptedMenu
         rpc.Write(m_BotTarget);
 
         PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-        rpc.Send(player, MoraleAIRPC.SERVER_PROCESS_INTERROGATION, true, null);
+        rpc.Send(player, MoraleAIRPC.SERVER_PROCESS_INTERROGATION, true, NULL);
         Close();
     }
 }

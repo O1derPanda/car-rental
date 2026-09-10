@@ -9,15 +9,15 @@ class MoraleAIStashManager
 
         if (spawnPos != vector.Zero)
         {
-            // Spawn the tent
-            EntityAI tent = EntityAI.Cast(GetGame().CreateObject("MediumTent", spawnPos));
-            if (tent)
+            // Spawn a container that natively holds items (MediumTent folded item causes a fatal inventory crash)
+            EntityAI stash = EntityAI.Cast(GetGame().CreateObject("SeaChest", spawnPos));
+            if (stash)
             {
-                // Pitch the tent if needed or spawn loot inside
-                tent.GetInventory().CreateInInventory("M4A1");
-                tent.GetInventory().CreateInInventory("AmmoBox_556x45_20Rnd");
-                tent.GetInventory().CreateInInventory("BakedBeansCan");
-                tent.GetInventory().CreateInInventory("Canteen");
+                // Spawn loot inside
+                stash.GetInventory().CreateInInventory("M4A1");
+                stash.GetInventory().CreateInInventory("AmmoBox_556x45_20Rnd");
+                stash.GetInventory().CreateInInventory("BakedBeansCan");
+                stash.GetInventory().CreateInInventory("Canteen");
 
                 // Send RPC to client to draw a 3D Waypoint
                 if (player && player.GetIdentity())
