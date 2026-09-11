@@ -12,6 +12,7 @@ class MoraleAIBotBase extends PlayerBase
     private string m_RestraintType;
     private float m_RestraintHealth;
     private float m_RestraintQuantity;
+    private ref MoraleAIBrain m_Brain;
 
     void MoraleAIBotBase()
     {
@@ -35,8 +36,9 @@ class MoraleAIBotBase extends PlayerBase
 
         if (GetGame().IsServer())
         {
+            m_Brain = new MoraleAIBrain(this);
             m_UpdateTimer = new Timer();
-            m_UpdateTimer.Run(1.0, this, "UpdateAI", NULL, true);
+            m_UpdateTimer.Run(0.1, this, "UpdateAI", NULL, true); // Tick faster for brain (10Hz)
         }
     }
 
@@ -111,28 +113,17 @@ class MoraleAIBotBase extends PlayerBase
             Print(dbgMsg);
             SendDebugChat(dbgMsg);
 
-            // Drop weapon explicitly
+            if (GetInputController())
+            {
+                GetInputController().OverrideMovementSpeed(true, 0.0);
+            }
+
+            // Drop weapon explicitly so tying hands works
             EntityAI weapon = GetHumanInventory().GetEntityInHands();
             if (weapon)
             {
                 GetInventory().DropEntity(InventoryMode.SERVER, this, weapon);
             }
-
-            // Delay playing the surrender animation by 500ms so the engine processes the dropped weapon first
-            GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.PlaySurrenderAnimation, 500, false);
-
-            // Here we would implement the actual AI stop logic
-            // (e.g. clear pathfinding, stop shooting)
-        }
-    }
-
-    void PlaySurrenderAnimation()
-    {
-        if (IsAlive() && GetCommand_Move())
-        {
-            // EmoteManager fails silently on Dummy AI.
-            // Force crouch directly so the bot visibly drops to its knees.
-            GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_CROUCH);
         }
     }
 
@@ -141,25 +132,20 @@ class MoraleAIBotBase extends PlayerBase
         if (!IsAlive() || m_State == MoraleAIState.SURRENDER)
             return;
 
-        // Basic State Machine Logic Placeholder
-        switch(m_State)
+        // Update Brain Logic
+        if (m_Brain)
         {
-            case MoraleAIState.AGGRESSIVE:
-                // Push player, aggressive logic
-                break;
-            case MoraleAIState.DEFENSIVE:
-                // Seek cover, defensive logic
-                break;
+            m_Brain.Update(0.1);
         }
 
-        // Morale Regeneration
-        RegenerateMorale();
+        // Morale Regeneration happens every tick but scaled (not optimal, but fine for prototype)
+        RegenerateMorale(0.1);
     }
 
-    void RegenerateMorale()
+    void RegenerateMorale(float deltaTime)
     {
-        // Regenerate morale over time (MoraleRegenPerMinute is per 60 seconds, timer is 1 second)
-        float regenAmt = MoraleAIConfig.Get().MoraleRegenPerMinute / 60.0;
+        // Regenerate morale over time (MoraleRegenPerMinute is per 60 seconds)
+        float regenAmt = (MoraleAIConfig.Get().MoraleRegenPerMinute / 60.0) * deltaTime;
         SetMorale(GetMorale() + regenAmt);
     }
 
