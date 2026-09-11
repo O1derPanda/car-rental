@@ -111,12 +111,11 @@ class MoraleAIBotBase extends PlayerBase
             Print(dbgMsg);
             SendDebugChat(dbgMsg);
 
-            // Drop weapon explicitly (forcibly un-equip and delete if ServerDrop fails)
+            // Drop weapon explicitly
             EntityAI weapon = GetHumanInventory().GetEntityInHands();
             if (weapon)
             {
                 GetInventory().DropEntity(InventoryMode.SERVER, this, weapon);
-                GetGame().ObjectDelete(weapon); // Bruteforce delete to guarantee unarmed state for testing
             }
 
             // Delay playing the surrender animation by 500ms so the engine processes the dropped weapon first
@@ -129,16 +128,11 @@ class MoraleAIBotBase extends PlayerBase
 
     void PlaySurrenderAnimation()
     {
-        if (IsAlive())
+        if (IsAlive() && GetCommand_Move())
         {
-            if (GetEmoteManager())
-            {
-                GetEmoteManager().CreateEmoteCBFromMenu(EmoteConstants.ID_EMOTE_SURRENDER);
-            }
-            else
-            {
-                GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_CROUCH);
-            }
+            // EmoteManager fails silently on Dummy AI.
+            // Force crouch directly so the bot visibly drops to its knees.
+            GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_CROUCH);
         }
     }
 
@@ -243,6 +237,13 @@ class MoraleAIBotBase extends PlayerBase
         // Drop restraint logic
         if (IsTiedUp() && m_RestraintType != "")
         {
+            // First, delete the dummy locked item from the bot's hands
+            EntityAI lockedItemInHands = GetHumanInventory().GetEntityInHands();
+            if (lockedItemInHands)
+            {
+                GetGame().ObjectDelete(lockedItemInHands);
+            }
+
             EntityAI restraint = EntityAI.Cast(GetGame().CreateObject(m_RestraintType, GetPosition()));
             if (restraint)
             {

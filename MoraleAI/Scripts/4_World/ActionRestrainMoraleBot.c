@@ -68,6 +68,25 @@ class ActionRestrainMoraleBot: ActionContinuousBase
 
             bot.SetTiedUp(true);
 
+            // Spawn the 'Locked' equivalent dummy item into the bot's hands
+            // DayZ's AnimGraph automatically handles the restrained animations when these items are in-hands.
+            string restraintType = action_data.m_MainItem.GetType();
+            string lockedClassname = "";
+
+            if (restraintType == "Rope")
+                lockedClassname = "RopeLocked";
+            else if (restraintType == "DuctTape")
+                lockedClassname = "DuctTapeLocked";
+            else if (restraintType == "Handcuffs")
+                lockedClassname = "HandcuffsLocked";
+            else if (restraintType == "MetalWire")
+                lockedClassname = "MetalWireLocked";
+
+            if (lockedClassname != "")
+            {
+                bot.GetHumanInventory().CreateInHands(lockedClassname);
+            }
+
             // Provide visual feedback that the bot is tied up (kneeling)
             if (bot.GetCommand_Move())
             {
