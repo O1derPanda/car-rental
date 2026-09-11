@@ -1,31 +1,6 @@
 modded class PlayerBase
 {
     private ref InterrogationMenu m_MoraleInterrogationMenu;
-    private ref array<ref MoraleAIWaypoint> m_StashWaypoints;
-    private ref Timer m_WaypointUpdateTimer;
-
-    override void EEInit()
-    {
-        super.EEInit();
-
-        if (GetGame().IsClient())
-        {
-            // We use GetGame().GetCallQueue() instead of a persistent Timer in EEInit
-            // to ensure it executes securely without Null Pointer Exceptions if IsControlledPlayer is delayed.
-            GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.InitTimers, 2000, false);
-        }
-    }
-
-    void InitTimers()
-    {
-        if (IsControlledPlayer())
-        {
-            m_StashWaypoints = new array<ref MoraleAIWaypoint>();
-            m_WaypointUpdateTimer = new Timer();
-            m_WaypointUpdateTimer.Run(0.016, this, "UpdateWaypoints", NULL, true);
-        }
-    }
-
     override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
     {
         super.OnRPC(sender, rpc_type, ctx);
@@ -104,8 +79,16 @@ modded class PlayerBase
             MoraleAIStashManager.GenerateStash(bot.GetPosition(), this);
         }
 
-        // Kill the bot or just keep them silent
-        bot.SetHealth("", "", 0); // Execute bot after interrogation
+        // Kill the bot or just keep them silent, deferred to prevent physics/network detachment sync conflict
+        GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.ExecuteBotDeferred, 500, false, bot);
+    }
+
+    void ExecuteBotDeferred(MoraleAIBotBase bot)
+    {
+        if (bot && bot.IsAlive())
+        {
+            bot.SetHealth("", "", 0);
+        }
     }
 
     // CLIENT
@@ -126,59 +109,8 @@ modded class PlayerBase
 
     void ReceiveStashWaypoint(vector wpPos)
     {
-        Widget wpWidget = GetGame().GetWorkspace().CreateWidgets("MoraleAI/GUI/Layouts/WaypointMarker.layout");
-        if (wpWidget)
-        {
-            m_StashWaypoints.Insert(new MoraleAIWaypoint(wpPos, wpWidget));
-            Print("[MoraleAI] Received stash waypoint at: " + wpPos.ToString());
-        }
-    }
-
-    void UpdateWaypoints()
-    {
-        if (!m_StashWaypoints || m_StashWaypoints.Count() == 0) return;
-        if (!IsControlledPlayer()) return;
-
-        for (int i = 0; i < m_StashWaypoints.Count(); i++)
-        {
-            MoraleAIWaypoint waypoint = m_StashWaypoints.Get(i);
-            if (!waypoint || !waypoint.widget) continue;
-
-            vector wp = waypoint.position;
-            Widget wpWidget = waypoint.widget;
-
-            vector screenPos;
-            vector camPos = GetGame().GetCurrentCameraPosition();
-            vector camDir = GetGame().GetCurrentCameraDirection();
-
-            // Basic dot product to check if waypoint is in front of the camera
-            vector dirToWp = (wp - camPos).Normalized();
-            if (vector.Dot(camDir, dirToWp) > 0)
-            {
-                screenPos = GetGame().GetScreenPosRelative(wp);
-
-                // Draw layout widget on screen if it's on screen
-                if (screenPos[0] > 0 && screenPos[0] < 1 && screenPos[1] > 0 && screenPos[1] < 1)
-                {
-                    wpWidget.Show(true);
-                    wpWidget.SetPos(screenPos[0], screenPos[1], true);
-
-                    TextWidget textW = TextWidget.Cast(wpWidget.FindAnyWidget("DistanceText"));
-                    if (textW)
-                    {
-                        float distance = vector.Distance(camPos, wp);
-                        textW.SetText(Math.Round(distance).ToString() + "m");
-                    }
-                }
-                else
-                {
-                    wpWidget.Show(false);
-                }
-            }
-            else
-            {
-                wpWidget.Show(false);
-            }
-        }
+        string msg = string.Format("Схрон найден! Координаты: %1, %2", wpPos[0], wpPos[2]);
+        GetGame().ChatPlayer(msg);
+        Print("[MoraleAI] Received stash waypoint at: " + wpPos.ToString());
     }
 }
