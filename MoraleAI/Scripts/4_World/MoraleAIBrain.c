@@ -65,7 +65,8 @@ class MoraleAIBrain
 
         // 1. Calculate direction and distance to target using standard vector math
         vector targetDir = (m_Target.GetPosition() - m_Bot.GetPosition()).Normalized();
-        float yaw = targetDir.VectorToAngles().x;
+        vector angles = targetDir.VectorToAngles();
+        float yaw = angles[0];
         float distance = vector.Distance(m_Bot.GetPosition(), m_Target.GetPosition());
 
         // 2. Set Orientation (Face the target)
