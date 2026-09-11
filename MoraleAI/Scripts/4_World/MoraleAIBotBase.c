@@ -10,6 +10,8 @@ class MoraleAIBotBase extends PlayerBase
     private bool m_Interrogated;
     private bool m_IsSurrendered;
     private string m_RestraintType;
+    private float m_RestraintHealth;
+    private float m_RestraintQuantity;
 
     void MoraleAIBotBase()
     {
@@ -117,7 +119,18 @@ class MoraleAIBotBase extends PlayerBase
                 GetGame().ObjectDelete(weapon); // Bruteforce delete to guarantee unarmed state for testing
             }
 
-            // Play surrender animation or fallback to crouch
+            // Delay playing the surrender animation by 500ms so the engine processes the dropped weapon first
+            GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.PlaySurrenderAnimation, 500, false);
+
+            // Here we would implement the actual AI stop logic
+            // (e.g. clear pathfinding, stop shooting)
+        }
+    }
+
+    void PlaySurrenderAnimation()
+    {
+        if (IsAlive())
+        {
             if (GetEmoteManager())
             {
                 GetEmoteManager().CreateEmoteCBFromMenu(EmoteConstants.ID_EMOTE_SURRENDER);
@@ -126,9 +139,6 @@ class MoraleAIBotBase extends PlayerBase
             {
                 GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_CROUCH);
             }
-
-            // Here we would implement the actual AI stop logic
-            // (e.g. clear pathfinding, stop shooting)
         }
     }
 
@@ -236,23 +246,38 @@ class MoraleAIBotBase extends PlayerBase
             EntityAI restraint = EntityAI.Cast(GetGame().CreateObject(m_RestraintType, GetPosition()));
             if (restraint)
             {
+                // Restore previous state
+                restraint.SetHealth("", "", m_RestraintHealth);
+
+                ItemBase itemBaseRes = ItemBase.Cast(restraint);
+                if (itemBaseRes)
+                {
+                    if (itemBaseRes.HasQuantity())
+                    {
+                        itemBaseRes.SetQuantity(m_RestraintQuantity);
+                    }
+                }
+
                 string rTypeLower = m_RestraintType;
                 rTypeLower.ToLower();
 
+                // Apply penalty from max health/quantity
                 if (rTypeLower.Contains("rope"))
                 {
-                    restraint.SetHealth("", "", restraint.GetHealth("", "") * 0.75);
+                    float ropeMax = restraint.GetMaxHealth("", "");
+                    restraint.SetHealth("", "", m_RestraintHealth - (ropeMax * 0.25));
                 }
                 else if (rTypeLower.Contains("handcuffs"))
                 {
-                    restraint.SetHealth("", "", restraint.GetHealth("", "") * 0.90);
+                    float cuffMax = restraint.GetMaxHealth("", "");
+                    restraint.SetHealth("", "", m_RestraintHealth - (cuffMax * 0.10));
                 }
                 else if (rTypeLower.Contains("ducttape"))
                 {
-                    ItemBase tape = ItemBase.Cast(restraint);
-                    if (tape)
+                    if (itemBaseRes && itemBaseRes.HasQuantity())
                     {
-                        tape.SetQuantity(tape.GetQuantity() * 0.75);
+                        float maxQty = itemBaseRes.GetQuantityMax();
+                        itemBaseRes.SetQuantity(m_RestraintQuantity - (maxQty * 0.25));
                     }
                 }
             }
@@ -309,5 +334,15 @@ class MoraleAIBotBase extends PlayerBase
     void SetRestraintType(string type)
     {
         m_RestraintType = type;
+    }
+
+    void SetRestraintHealth(float health)
+    {
+        m_RestraintHealth = health;
+    }
+
+    void SetRestraintQuantity(float quantity)
+    {
+        m_RestraintQuantity = quantity;
     }
 }

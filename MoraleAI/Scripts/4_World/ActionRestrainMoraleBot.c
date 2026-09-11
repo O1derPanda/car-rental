@@ -59,6 +59,13 @@ class ActionRestrainMoraleBot: ActionContinuousBase
         if (bot && action_data.m_MainItem)
         {
             bot.SetRestraintType(action_data.m_MainItem.GetType());
+            bot.SetRestraintHealth(action_data.m_MainItem.GetHealth("", ""));
+
+            if (action_data.m_MainItem.HasQuantity())
+            {
+                bot.SetRestraintQuantity(action_data.m_MainItem.GetQuantity());
+            }
+
             bot.SetTiedUp(true);
 
             // Provide visual feedback that the bot is tied up (kneeling)
