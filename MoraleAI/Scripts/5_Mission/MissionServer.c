@@ -57,6 +57,22 @@ modded class MissionServer
                     newSquad.SpawnSquad(spawnPos);
                     m_ActiveSquads.Insert(newSquad);
                 }
+                else if (chatParams.param3 == "!surrender")
+                {
+                    foreach (MoraleAISquadManager sq : m_ActiveSquads)
+                    {
+                        if (sq)
+                        {
+                            foreach (MoraleAIBotBase surrenderBot : sq.GetMembers())
+                            {
+                                if (surrenderBot && surrenderBot.IsAlive())
+                                {
+                                    surrenderBot.SetMorale(0); // Instantly trigger surrender state
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

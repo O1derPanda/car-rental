@@ -124,6 +124,24 @@ class MoraleAIBotBase extends PlayerBase
             {
                 GetInventory().DropEntity(InventoryMode.SERVER, this, weapon);
             }
+
+            // Delay playing the surrender animation by 500ms so the engine processes the dropped weapon first
+            GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.PlaySurrenderAnimation, 500, false);
+        }
+    }
+
+    void PlaySurrenderAnimation()
+    {
+        if (IsAlive())
+        {
+            if (GetEmoteManager())
+            {
+                GetEmoteManager().PlayEmote(EmoteConstants.ID_EMOTE_SURRENDER);
+            }
+            else if (GetCommand_Move())
+            {
+                GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_CROUCH);
+            }
         }
     }
 
