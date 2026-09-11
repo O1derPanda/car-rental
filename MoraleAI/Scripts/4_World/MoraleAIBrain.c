@@ -66,24 +66,48 @@ class MoraleAIBrain
         // 1. Calculate direction and distance to target using standard vector math
         vector targetDir = (m_Target.GetPosition() - m_Bot.GetPosition()).Normalized();
         vector angles = targetDir.VectorToAngles();
-        float yaw = angles[0];
+        float targetYaw = angles[0];
         float distance = vector.Distance(m_Bot.GetPosition(), m_Target.GetPosition());
 
-        // 2. Set Orientation (Face the target)
-        // DayZ angles: X is Yaw, Y is Pitch, Z is Roll
-        vector newOrientation = Vector(yaw, 0, 0);
+        // 2. Obstacle Avoidance (Raycast)
+        float finalYaw = targetYaw;
+        vector startPos = m_Bot.GetPosition();
+        startPos[1] = startPos[1] + 1.0; // Cast from chest height
+
+        // Raycast 3 meters forward
+        vector forwardDir = Vector(targetYaw, 0, 0).AnglesToVector();
+        vector endPos = startPos + (forwardDir * 3.0);
+
+        vector contactPos;
+        vector contactDir;
+        int contactComponent;
+
+        // Use DayZPhysics to cast a ray. Ignore the bot itself.
+        bool hit = DayZPhysics.RaycastRV(startPos, endPos, contactPos, contactDir, contactComponent, null, null, m_Bot, false, false, ObjIntersectIFire);
+
+        if (hit)
+        {
+            // If an obstacle is detected directly ahead, steer 90 degrees to the right
+            // In a full system, we would cast multiple rays (left, right, forward) to find the best path.
+            // For V1, simple right-hand steering.
+            finalYaw = targetYaw + 90.0;
+
+            // Normalize yaw to stay within 0-360
+            if (finalYaw > 360.0)
+                finalYaw -= 360.0;
+        }
+
+        // 3. Set Orientation (Face the target or the avoidance path)
+        vector newOrientation = Vector(finalYaw, 0, 0);
         m_Bot.SetOrientation(newOrientation);
 
-        // 3. Move towards target using InputController overrides
-        // Stop moving if we are within 3 meters
-        if (distance > 3.0)
+        // 4. Move using InputController overrides
+        // Stop moving if we are within 3 meters AND we are looking at the target
+        // (if we are looking away due to avoidance, keep moving to clear the obstacle)
+        if (distance > 3.0 || hit)
         {
-            // OverrideMovementSpeed(override, speed_value [0=Idle, 1=Walk, 2=Jog, 3=Sprint])
             inputController.OverrideMovementSpeed(true, 2.0); // Jog
-
-            // OverrideMovementAngle(override, angle [0=Forward, 180=Backward, 90/-90=Strafe])
-            // Since we snap orientation to face the target, we just walk forward (0)
-            inputController.OverrideMovementAngle(true, 0.0);
+            inputController.OverrideMovementAngle(true, 0.0); // Walk forward relative to current orientation
         }
         else
         {
