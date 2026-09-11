@@ -37,8 +37,24 @@ modded class MissionServer
                     }
                     m_ActiveSquads.Clear();
 
+                    vector spawnPos = "7550 0 7550".ToVector();
+
+                    array<Man> players = new array<Man>;
+                    GetGame().GetPlayers(players);
+
+                    if (players && players.Count() > 0)
+                    {
+                        PlayerBase pb = PlayerBase.Cast(players.Get(0));
+                        if (pb)
+                        {
+                            vector playerPos = pb.GetPosition();
+                            vector playerDir = pb.GetDirection();
+                            spawnPos = playerPos + (playerDir * 5.0);
+                        }
+                    }
+
                     MoraleAISquadManager newSquad = new MoraleAISquadManager();
-                    newSquad.SpawnSquad("7550 0 7550".ToVector());
+                    newSquad.SpawnSquad(spawnPos);
                     m_ActiveSquads.Insert(newSquad);
                 }
             }
