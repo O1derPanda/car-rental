@@ -56,14 +56,15 @@ class ActionRestrainMoraleBot: ActionContinuousBase
     override void OnFinishProgressServer(ActionData action_data)
     {
         MoraleAIBotBase bot = MoraleAIBotBase.Cast(action_data.m_Target.GetObject());
-        if (bot)
+        if (bot && action_data.m_MainItem)
         {
+            bot.SetRestraintType(action_data.m_MainItem.GetType());
             bot.SetTiedUp(true);
 
-            // Provide visual feedback that the bot is tied up
+            // Provide visual feedback that the bot is tied up (kneeling)
             if (bot.GetCommand_Move())
             {
-                bot.GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_PRONE);
+                bot.GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_CROUCH);
             }
 
             action_data.m_MainItem.Delete(); // Consume the restraint item

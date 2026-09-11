@@ -9,6 +9,7 @@ class MoraleAIBotBase extends PlayerBase
     private bool m_IsTiedUp;
     private bool m_Interrogated;
     private bool m_IsSurrendered;
+    private string m_RestraintType;
 
     void MoraleAIBotBase()
     {
@@ -228,6 +229,34 @@ class MoraleAIBotBase extends PlayerBase
 
             m_Squad.RemoveMember(this);
         }
+
+        // Drop restraint logic
+        if (IsTiedUp() && m_RestraintType != "")
+        {
+            EntityAI restraint = EntityAI.Cast(GetGame().CreateObject(m_RestraintType, GetPosition()));
+            if (restraint)
+            {
+                string rTypeLower = m_RestraintType;
+                rTypeLower.ToLower();
+
+                if (rTypeLower.Contains("rope"))
+                {
+                    restraint.SetHealth("", "", restraint.GetHealth("", "") * 0.75);
+                }
+                else if (rTypeLower.Contains("handcuffs"))
+                {
+                    restraint.SetHealth("", "", restraint.GetHealth("", "") * 0.90);
+                }
+                else if (rTypeLower.Contains("ducttape"))
+                {
+                    ItemBase tape = ItemBase.Cast(restraint);
+                    if (tape)
+                    {
+                        tape.SetQuantity(tape.GetQuantity() * 0.75);
+                    }
+                }
+            }
+        }
     }
 
     void SendDebugChat(string msg)
@@ -275,5 +304,10 @@ class MoraleAIBotBase extends PlayerBase
     {
         m_Interrogated = state;
         SetSynchDirty();
+    }
+
+    void SetRestraintType(string type)
+    {
+        m_RestraintType = type;
     }
 }
