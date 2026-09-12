@@ -24,6 +24,7 @@ class MoraleAIBrain
     // Combat Logic
     private float m_FireBurstTimer;
     private int m_ShotsToFire;
+    private float m_AimTimer;
 
     void MoraleAIBrain(MoraleAIBotBase bot)
     {
@@ -37,6 +38,7 @@ class MoraleAIBrain
         m_EvasionPhase = 0;
         m_FireBurstTimer = 0.0;
         m_ShotsToFire = 0;
+        m_AimTimer = 0.0;
         m_LastPos = bot.GetPosition();
 
         // Initialize Pathfinding Filter (allows NavMesh usage)
@@ -314,8 +316,10 @@ class MoraleAIBrain
             inputController.OverrideAimChangeX(true, 0.0);
             inputController.OverrideAimChangeY(true, 0.0);
 
-            // Burst fire logic - wait until weapon is actually raised
-            if (m_Bot.IsRaised())
+            // Wait for 1 second for the raise animation to complete before firing
+            m_AimTimer += 0.1;
+
+            if (m_AimTimer > 1.0)
             {
                 m_FireBurstTimer += 0.1;
                 if (m_ShotsToFire > 0)
@@ -361,7 +365,7 @@ class MoraleAIBrain
                 // Prevent log spam, only send occasionally
                 if (m_FireBurstTimer > 1.0)
                 {
-                    m_Bot.SendDebugChat("[MoraleAI] Waiting for weapon to raise...");
+                    m_Bot.SendDebugChat("[MoraleAI] Waiting for weapon to raise... (AimTimer)");
                     m_FireBurstTimer = 0.0;
                 }
                 else
@@ -375,6 +379,7 @@ class MoraleAIBrain
             // Reset combat states
             inputController.OverrideRaise(true, false);
             m_ShotsToFire = 0;
+            m_AimTimer = 0.0;
 
             if (m_Bot.GetCommand_Move())
             {
