@@ -12,6 +12,7 @@ class MoraleAIBrain
 
     // Stamina
     private float m_Stamina;
+    private bool m_IsExhausted;
     private float m_DoorCheckTimer;
 
     void MoraleAIBrain(MoraleAIBotBase bot)
@@ -19,6 +20,7 @@ class MoraleAIBrain
         m_Bot = bot;
         m_Path = new array<vector>();
         m_Stamina = 100.0;
+        m_IsExhausted = false;
         m_DoorCheckTimer = 0.0;
 
         // Initialize Pathfinding Filter (allows NavMesh usage)
@@ -132,23 +134,33 @@ class MoraleAIBrain
             // Stamina & Speed Logic
             float desiredSpeed = 0.0;
 
+            if (m_Stamina <= 10.0)
+            {
+                m_IsExhausted = true;
+            }
+            else if (m_Stamina >= 80.0)
+            {
+                m_IsExhausted = false;
+            }
+
             // Combat range (stop if visible and within 30m, but for now we stop closer to test nav)
             // Let's use 50 meters as sightline, 10 meters as stop range for now
             if (distanceToTarget <= 10.0)
             {
                 desiredSpeed = 0.0; // Stop
+                m_Stamina += 1.0;
             }
             else if (distanceToTarget > 30.0)
             {
-                if (m_Stamina > 20.0)
+                if (!m_IsExhausted)
                 {
                     desiredSpeed = 3.0; // Sprint
-                    m_Stamina -= 2.0; // Drain
+                    m_Stamina -= 1.0; // Drain
                 }
                 else
                 {
                     desiredSpeed = 2.0; // Jog (recovering)
-                    m_Stamina += 1.0;
+                    m_Stamina += 0.5;
                 }
             }
             else
@@ -179,53 +191,43 @@ class MoraleAIBrain
         vector start = m_Bot.GetPosition();
         start[1] = start[1] + 1.0; // Chest height
         vector forward = m_Bot.GetDirection();
-        vector end = start + (forward * 1.5); // Short distance in front
+        vector end = start + (forward * 2.0); // Increased distance to 2m
 
         vector contactPos;
         vector contactDir;
         int contactComponent;
 
-        // Cast ray to find buildings
-        bool hit = DayZPhysics.RaycastRV(start, end, contactPos, contactDir, contactComponent, null, null, m_Bot, false, false, ObjIntersectGeom);
+        // Cast ray to find buildings using ObjIntersectView (better for interactables like doors)
+        set<Object> hitObjects = new set<Object>;
+        bool hit = DayZPhysics.RaycastRV(start, end, contactPos, contactDir, contactComponent, hitObjects, null, m_Bot, false, false, ObjIntersectView);
 
-        if (hit)
+        if (hit && hitObjects.Count() > 0)
         {
-            Object obj;
-            // Native way to get the object hit by RaycastRV requires passing a set
-            set<Object> hitObjects = new set<Object>;
-            DayZPhysics.RaycastRV(start, end, contactPos, contactDir, contactComponent, hitObjects, null, m_Bot, false, false, ObjIntersectGeom);
+            Object obj = hitObjects[0];
+            Building building = Building.Cast(obj);
 
-            if (hitObjects.Count() > 0)
+            if (building)
             {
-                obj = hitObjects[0];
-                Building building = Building.Cast(obj);
+                // Find the door index from the component string
+                string compName = building.GetActionComponentName(contactComponent);
+                string doorName = compName;
+                doorName.ToLower();
 
-                if (building)
+                if (doorName.Contains("door"))
                 {
-                    // Find the door index from the component string (DayZ standard)
-                    string compName = building.GetActionComponentName(contactComponent);
-                    string doorName = compName;
-                    doorName.ToLower();
-
-                    if (doorName.Contains("door"))
+                    int doorIndex = building.GetDoorIndex(contactComponent);
+                    if (doorIndex != -1)
                     {
-                        int doorIndex = building.GetDoorIndex(contactComponent);
-                        if (doorIndex != -1)
+                        if (!building.IsDoorOpen(doorIndex))
                         {
-                            if (!building.IsDoorOpen(doorIndex))
+                            if (!building.IsDoorLocked(doorIndex))
                             {
-                                // If locked, we would add logic to bash or picklock here
-                                // For now, just open it if possible
-                                if (!building.IsDoorLocked(doorIndex))
-                                {
-                                    building.OpenDoor(doorIndex);
-                                }
-                                else
-                                {
-                                    // Simulated breaching (future logic goes here)
-                                    // building.UnlockDoor(doorIndex);
-                                    // building.OpenDoor(doorIndex);
-                                }
+                                building.OpenDoor(doorIndex);
+                                m_Bot.SendDebugChat(string.Format("[MoraleAI] Opened door index %1 in %2", doorIndex, building.GetType()));
+                            }
+                            else
+                            {
+                                m_Bot.SendDebugChat(string.Format("[MoraleAI] Found locked door index %1 in %2 (cannot breach yet)", doorIndex, building.GetType()));
                             }
                         }
                     }
