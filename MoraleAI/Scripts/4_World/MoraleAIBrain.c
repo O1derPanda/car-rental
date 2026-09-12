@@ -21,6 +21,10 @@ class MoraleAIBrain
     private float m_EvasionTimer;
     private int m_EvasionPhase;
 
+    // Combat Logic
+    private float m_FireBurstTimer;
+    private int m_ShotsToFire;
+
     void MoraleAIBrain(MoraleAIBotBase bot)
     {
         m_Bot = bot;
@@ -31,6 +35,8 @@ class MoraleAIBrain
         m_StuckTimer = 0.0;
         m_EvasionTimer = 0.0;
         m_EvasionPhase = 0;
+        m_FireBurstTimer = 0.0;
+        m_ShotsToFire = 0;
         m_LastPos = bot.GetPosition();
 
         // Initialize Pathfinding Filter (allows NavMesh usage)
@@ -138,13 +144,16 @@ class MoraleAIBrain
                 m_IsExhausted = false;
             }
 
-            // Combat range (stop if visible and within 30m, but for now we stop closer to test nav)
-            if (distanceToTarget <= 10.0)
+            // Combat range logic
+            bool inCombatRange = false;
+
+            if (distanceToTarget <= 30.0)
             {
-                desiredSpeed = 0.0; // Stop
+                desiredSpeed = 0.0; // Stop to shoot
                 m_Stamina += 1.0;
+                inCombatRange = true;
             }
-            else if (distanceToTarget > 30.0)
+            else if (distanceToTarget > 50.0)
             {
                 if (!m_IsExhausted)
                 {
@@ -258,6 +267,9 @@ class MoraleAIBrain
 
             inputController.OverrideMovementSpeed(true, desiredSpeed);
             inputController.OverrideMovementAngle(true, movementAngle);
+
+            // Combat Engagement
+            HandleCombatEngagement(inputController, inCombatRange);
         }
         else
         {
@@ -272,6 +284,73 @@ class MoraleAIBrain
             inputController.OverrideMovementSpeed(true, 0.0);
             m_Stamina += 2.0; // Fast regen when standing still
             m_Stamina = Math.Clamp(m_Stamina, 0.0, 100.0);
+
+            // Still try to shoot if fallback turning
+            if (m_Target && m_Target.IsAlive())
+            {
+                float fallbackDist = vector.Distance(m_Bot.GetPosition(), m_Target.GetPosition());
+                HandleCombatEngagement(inputController, fallbackDist <= 30.0);
+            }
+        }
+    }
+
+    private void HandleCombatEngagement(HumanInputController inputController, bool inCombatRange)
+    {
+        if (inCombatRange && m_Target && m_Target.IsAlive())
+        {
+            // Face target directly when shooting
+            vector directDir = (m_Target.GetPosition() - m_Bot.GetPosition()).Normalized();
+            vector directAngles = directDir.VectorToAngles();
+            m_Bot.SetOrientation(Vector(directAngles[0], 0, 0));
+
+            // Crouch for accuracy
+            if (m_Bot.GetCommand_Move())
+            {
+                m_Bot.GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_CROUCH);
+            }
+
+            // Override Input to aim weapon
+            inputController.OverrideRaise(true, true);
+            inputController.OverrideAimChangeX(true, 0.0);
+            inputController.OverrideAimChangeY(true, 0.0);
+
+            // Burst fire logic
+            m_FireBurstTimer += 0.1;
+            if (m_ShotsToFire > 0)
+            {
+                // Force fire via Weapon FSM Event Trigger
+                EntityAI entityInHands = m_Bot.GetHumanInventory().GetEntityInHands();
+                Weapon_Base weapon;
+                if (Class.CastTo(weapon, entityInHands))
+                {
+                    if (weapon.CanFire())
+                    {
+                        // DayZ requires triggering the WeaponEventTrigger to simulate pulling the trigger
+                        weapon.ProcessWeaponEvent(new WeaponEventTrigger(m_Bot));
+                    }
+                }
+                m_ShotsToFire--;
+            }
+            else
+            {
+                // Start new burst every 2 seconds
+                if (m_FireBurstTimer > 2.0)
+                {
+                    m_ShotsToFire = Math.RandomIntInclusive(2, 5); // Fire 2 to 5 bullets
+                    m_FireBurstTimer = 0.0;
+                }
+            }
+        }
+        else
+        {
+            // Reset combat states
+            inputController.OverrideRaise(true, false);
+            m_ShotsToFire = 0;
+
+            if (m_Bot.GetCommand_Move())
+            {
+                m_Bot.GetCommand_Move().ForceStance(DayZPlayerConstants.STANCEIDX_ERECT);
+            }
         }
     }
 

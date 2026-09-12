@@ -35,6 +35,9 @@ class MoraleAIConfig
     float StashSpawnRadiusMin = 300.0;
     float StashSpawnRadiusMax = 500.0;
 
+    // Testing and Debugging
+    bool IsDebugMode = true; // MUST BE DISABLED IN PRODUCTION
+
     // Non-serialized loaded config instance
     [NonSerialized()]
     private static ref MoraleAIConfig m_Instance;
@@ -96,6 +99,8 @@ class MoraleAIConfig
 
             this.StashSpawnRadiusMin = tempConfig.StashSpawnRadiusMin;
             this.StashSpawnRadiusMax = tempConfig.StashSpawnRadiusMax;
+
+            this.IsDebugMode = tempConfig.IsDebugMode;
         }
         else
         {

@@ -54,6 +54,13 @@ class MoraleAISquadManager
                 if (weapon)
                 {
                     weapon.GetInventory().CreateAttachment("Mag_STANAG_30Rnd");
+
+                    Weapon_Base wpnBase;
+                    if (Class.CastTo(wpnBase, weapon))
+                    {
+                        // Push a bullet directly into the chamber so it can fire immediately
+                        wpnBase.PushCartridgeToChamber(0, 0.0, "Ammo_556x45");
+                    }
                 }
             }
         }

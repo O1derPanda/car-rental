@@ -20,9 +20,14 @@ modded class MissionServer
         // Chat command to respawn bots for testing
         if (eventTypeId == ChatMessageEventTypeID)
         {
+            if (!MoraleAIConfig.Get().IsDebugMode)
+                return; // Security: Ignore chat commands in production
+
             ChatMessageEventParams chatParams;
             if (Class.CastTo(chatParams, params))
             {
+                // SECURITY WARNING: These chat commands are globally accessible and meant ONLY for local testing.
+                // In a production environment, IsDebugMode MUST be false.
                 if (chatParams.param3 == "!respawnbots")
                 {
                     foreach (MoraleAISquadManager s : m_ActiveSquads)
