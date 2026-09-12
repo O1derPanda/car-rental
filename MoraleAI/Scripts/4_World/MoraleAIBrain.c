@@ -18,7 +18,8 @@ class MoraleAIBrain
     // Anti-Stuck Logic
     private vector m_LastPos;
     private float m_StuckTimer;
-    private bool m_IsEvading;
+    private float m_EvasionTimer;
+    private int m_EvasionPhase;
 
     void MoraleAIBrain(MoraleAIBotBase bot)
     {
@@ -28,7 +29,8 @@ class MoraleAIBrain
         m_IsExhausted = false;
         m_DoorCheckTimer = 0.0;
         m_StuckTimer = 0.0;
-        m_IsEvading = false;
+        m_EvasionTimer = 0.0;
+        m_EvasionPhase = 0;
         m_LastPos = bot.GetPosition();
 
         // Initialize Pathfinding Filter (allows NavMesh usage)
@@ -168,41 +170,77 @@ class MoraleAIBrain
 
             float movementAngle = 0.0; // 0 is forward
 
-            // Handle Anti-Stuck Logic ONLY if the bot is actually trying to move
-            if (desiredSpeed > 0.0)
+            // Handle Evasion State
+            if (m_EvasionTimer > 0)
             {
-                float distMoved = vector.Distance(m_Bot.GetPosition(), m_LastPos);
-                if (distMoved < 0.05) // Barely moved in 0.1s
+                m_EvasionTimer -= 0.1;
+
+                // Force evasive action for the duration of the timer
+                if (m_EvasionPhase == 1)
                 {
-                    m_StuckTimer += 0.1;
+                    movementAngle = 90.0; // Strafe Right
+                    yaw += 45.0;
                 }
-                else
+                else if (m_EvasionPhase == 2)
                 {
-                    m_StuckTimer = 0.0;
-                    m_IsEvading = false;
+                    movementAngle = -90.0; // Strafe Left
+                    yaw -= 45.0;
+                }
+                else if (m_EvasionPhase == 3)
+                {
+                    movementAngle = 180.0; // Move Backwards
+                    // Do not change yaw, back up straight
                 }
 
-                if (m_StuckTimer > 1.0)
+                desiredSpeed = 2.0; // Force movement speed while evading
+                m_StuckTimer = 0.0; // Keep stuck timer reset while evading
+
+                if (m_EvasionTimer <= 0)
                 {
-                    // Stuck for 1 second. Initiate evasion.
-                    m_IsEvading = true;
-                    m_StuckTimer = 0.0; // Reset
+                    // Evasion complete. Request a fresh path.
                     UpdatePathfinding(m_Target.GetPosition());
-                }
-
-                if (m_IsEvading)
-                {
-                    // Strafe right (90 degrees) to try and slide past the obstacle
-                    movementAngle = 90.0;
-                    yaw += 45.0; // Angled push
-                    desiredSpeed = Math.Max(2.0, desiredSpeed); // Force movement speed while evading
                 }
             }
             else
             {
-                // If the bot intends to be stopped, it is not stuck
-                m_StuckTimer = 0.0;
-                m_IsEvading = false;
+                // Handle Normal Anti-Stuck Logic (ONLY if trying to move and not already evading)
+                if (desiredSpeed > 0.0)
+                {
+                    float distMoved = vector.Distance(m_Bot.GetPosition(), m_LastPos);
+                    if (distMoved < 0.05) // Barely moved in 0.1s
+                    {
+                        m_StuckTimer += 0.1;
+                    }
+                    else
+                    {
+                        // Moving fine, reset timers/phases
+                        m_StuckTimer = 0.0;
+                        m_EvasionPhase = 0;
+                    }
+
+                    // Trigger Evasion Phases
+                    if (m_StuckTimer > 3.0)
+                    {
+                        m_EvasionTimer = 1.0; // Evade for 1 second
+                        m_EvasionPhase = 3;
+                    }
+                    else if (m_StuckTimer > 2.0 && m_EvasionPhase < 2)
+                    {
+                        m_EvasionTimer = 0.5; // Evade for 0.5 seconds
+                        m_EvasionPhase = 2;
+                    }
+                    else if (m_StuckTimer > 1.0 && m_EvasionPhase < 1)
+                    {
+                        m_EvasionTimer = 0.5; // Evade for 0.5 seconds
+                        m_EvasionPhase = 1;
+                    }
+                }
+                else
+                {
+                    // If intending to be stopped, not stuck
+                    m_StuckTimer = 0.0;
+                    m_EvasionPhase = 0;
+                }
             }
 
             m_LastPos = m_Bot.GetPosition();
@@ -225,7 +263,8 @@ class MoraleAIBrain
         {
             m_LastPos = m_Bot.GetPosition();
             m_StuckTimer = 0.0;
-            m_IsEvading = false;
+            m_EvasionTimer = 0.0;
+            m_EvasionPhase = 0;
             // No path, turn to target and wait
             vector fallbackDir = (m_Target.GetPosition() - m_Bot.GetPosition()).Normalized();
             vector fallbackAngles = fallbackDir.VectorToAngles();
