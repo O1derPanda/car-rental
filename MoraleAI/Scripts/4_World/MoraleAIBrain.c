@@ -329,23 +329,22 @@ class MoraleAIBrain
                     Weapon_Base weapon;
                     if (Class.CastTo(weapon, entityInHands))
                     {
-                        if (weapon.CanFire())
+                        bool canFire = weapon.CanFire();
+                        bool isChamberFull = weapon.IsChamberFull(0);
+                        bool isChamberEmpty = weapon.IsChamberEmpty(0);
+                        bool isJammed = weapon.IsChamberJammed(0);
+
+                        if (canFire)
                         {
-                            if (weapon.IsChamberFull(0))
-                            {
-                                weapon.ProcessWeaponEvent(new WeaponEventTrigger(m_Bot));
-                                m_Bot.SendDebugChat("[MoraleAI] *BANG* Fired bullet!");
-                            }
-                            else
-                            {
-                                m_Bot.SendDebugChat("[MoraleAI] Click! Chamber is empty.");
-                                m_ShotsToFire = 0; // Abort burst
-                            }
+                            weapon.ProcessWeaponEvent(new WeaponEventTrigger(m_Bot));
+                            m_Bot.SendDebugChat("[MoraleAI] *BANG* CanFire=TRUE, triggered shot!");
                         }
                         else
                         {
-                            m_Bot.SendDebugChat(string.Format("[MoraleAI] CanFire is FALSE! Weapon state: %1", weapon.IsDamageDestroyed()));
-                            m_ShotsToFire = 0;
+                            m_Bot.SendDebugChat(string.Format("[MoraleAI] CanFire=FALSE | Full:%1 Empty:%2 Jam:%3 | Forcing trigger anyway...", isChamberFull, isChamberEmpty, isJammed));
+                            // Force trigger anyway to see if the FSM catches it
+                            weapon.ProcessWeaponEvent(new WeaponEventTrigger(m_Bot));
+                            m_ShotsToFire = 0; // Abort this burst
                         }
                     }
                     m_ShotsToFire--;
