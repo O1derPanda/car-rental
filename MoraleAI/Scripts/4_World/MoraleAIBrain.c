@@ -329,22 +329,46 @@ class MoraleAIBrain
                     Weapon_Base weapon;
                     if (Class.CastTo(weapon, entityInHands))
                     {
-                        bool canFire = weapon.CanFire();
-                        bool isChamberFull = weapon.IsChamberFull(0);
-                        bool isChamberEmpty = weapon.IsChamberEmpty(0);
-                        bool isJammed = weapon.IsChamberJammed(0);
+                        // Due to Enfusion engine limitations, Dummy PlayerBase AI without a network controller
+                        // cannot successfully process Weapon FSM events (ProcessWeaponEvent) because they lack
+                        // the animation graph callbacks required to transition weapon states.
+                        // To bypass this, we manually spawn a bullet and trigger visual/audio effects.
 
-                        if (canFire)
+                        vector beginPoint;
+                        vector endPoint;
+                        vector dir;
+
+                        // Get barrel position and direction
+                        int mi = weapon.GetBoneIndexByName("usti hlavne"); // Muzzle bone
+                        if (mi != -1)
                         {
-                            weapon.ProcessWeaponEvent(new WeaponEventTrigger(m_Bot));
-                            m_Bot.SendDebugChat("[MoraleAI] *BANG* CanFire=TRUE, triggered shot!");
+                            beginPoint = weapon.GetBonePositionWS(mi);
                         }
                         else
                         {
-                            m_Bot.SendDebugChat(string.Format("[MoraleAI] CanFire=FALSE | Full:%1 Empty:%2 Jam:%3 | Forcing trigger anyway...", isChamberFull, isChamberEmpty, isJammed));
-                            // Force trigger anyway to see if the FSM catches it
-                            weapon.ProcessWeaponEvent(new WeaponEventTrigger(m_Bot));
-                            m_ShotsToFire = 0; // Abort this burst
+                            beginPoint = m_Bot.GetPosition() + Vector(0, 1.5, 0); // Fallback to chest height
+                        }
+
+                        if (m_Target)
+                        {
+                            // Aim slightly below the head for center mass
+                            endPoint = m_Target.GetPosition() + Vector(0, 1.0, 0);
+                            dir = (endPoint - beginPoint).Normalized();
+                        }
+                        else
+                        {
+                            dir = m_Bot.GetDirection();
+                        }
+
+                        // Get the ammo type assigned to the weapon's magazine or fallback to default 556
+                        string ammoType = "Bullet_556x45"; // DayZ actual projectile class is Bullet_xxx, not Ammo_xxx
+
+                        // 1. Fire the actual projectile using the engine's global Shoot method
+                        // For DayZ, Fire() on the weapon directly bypasses FSM but requires muzzle index and velocities
+                        if (GetGame().IsServer())
+                        {
+                            weapon.Fire(0, beginPoint, dir, dir);
+                            m_Bot.SendDebugChat("[MoraleAI] *BANG* Fired shot (Bypassed FSM)!");
                         }
                     }
                     m_ShotsToFire--;

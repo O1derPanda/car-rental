@@ -65,10 +65,6 @@ class MoraleAISquadManager
                     {
                         // Push a bullet directly into the chamber
                         wpnBase.PushCartridgeToChamber(0, 0.0, "Ammo_556x45");
-
-                        // Force weapon FSM to register the chambered round
-                        wpnBase.RandomizeFSMState();
-                        wpnBase.Synchronize();
                     }
                 }
             }
