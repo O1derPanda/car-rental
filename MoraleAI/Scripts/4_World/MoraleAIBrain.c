@@ -15,6 +15,11 @@ class MoraleAIBrain
     private bool m_IsExhausted;
     private float m_DoorCheckTimer;
 
+    // Anti-Stuck Logic
+    private vector m_LastPos;
+    private float m_StuckTimer;
+    private bool m_IsEvading;
+
     void MoraleAIBrain(MoraleAIBotBase bot)
     {
         m_Bot = bot;
@@ -22,6 +27,9 @@ class MoraleAIBrain
         m_Stamina = 100.0;
         m_IsExhausted = false;
         m_DoorCheckTimer = 0.0;
+        m_StuckTimer = 0.0;
+        m_IsEvading = false;
+        m_LastPos = bot.GetPosition();
 
         // Initialize Pathfinding Filter (allows NavMesh usage)
         m_PathFilter = new PGFilter();
@@ -116,22 +124,7 @@ class MoraleAIBrain
                 currentWaypoint = m_Path.Get(m_CurrentWaypointIndex);
             }
 
-            // Calculate direction to the current NavMesh waypoint
-            vector dirToWp = (currentWaypoint - m_Bot.GetPosition()).Normalized();
-            vector angles = dirToWp.VectorToAngles();
-            float yaw = angles[0];
-
-            m_Bot.SetOrientation(Vector(yaw, 0, 0));
-
-            // Handle Doors every 0.5s
-            m_DoorCheckTimer += 0.1;
-            if (m_DoorCheckTimer > 0.5)
-            {
-                CheckAndOpenDoors();
-                m_DoorCheckTimer = 0.0;
-            }
-
-            // Stamina & Speed Logic
+            // Stamina & Speed Logic (Calculate desired speed FIRST)
             float desiredSpeed = 0.0;
 
             if (m_Stamina <= 10.0)
@@ -144,7 +137,6 @@ class MoraleAIBrain
             }
 
             // Combat range (stop if visible and within 30m, but for now we stop closer to test nav)
-            // Let's use 50 meters as sightline, 10 meters as stop range for now
             if (distanceToTarget <= 10.0)
             {
                 desiredSpeed = 0.0; // Stop
@@ -169,13 +161,71 @@ class MoraleAIBrain
                 m_Stamina += 0.5; // Slow regen
             }
 
+            // Calculate direction to the current NavMesh waypoint
+            vector dirToWp = (currentWaypoint - m_Bot.GetPosition()).Normalized();
+            vector angles = dirToWp.VectorToAngles();
+            float yaw = angles[0];
+
+            float movementAngle = 0.0; // 0 is forward
+
+            // Handle Anti-Stuck Logic ONLY if the bot is actually trying to move
+            if (desiredSpeed > 0.0)
+            {
+                float distMoved = vector.Distance(m_Bot.GetPosition(), m_LastPos);
+                if (distMoved < 0.05) // Barely moved in 0.1s
+                {
+                    m_StuckTimer += 0.1;
+                }
+                else
+                {
+                    m_StuckTimer = 0.0;
+                    m_IsEvading = false;
+                }
+
+                if (m_StuckTimer > 1.0)
+                {
+                    // Stuck for 1 second. Initiate evasion.
+                    m_IsEvading = true;
+                    m_StuckTimer = 0.0; // Reset
+                    UpdatePathfinding(m_Target.GetPosition());
+                }
+
+                if (m_IsEvading)
+                {
+                    // Strafe right (90 degrees) to try and slide past the obstacle
+                    movementAngle = 90.0;
+                    yaw += 45.0; // Angled push
+                    desiredSpeed = Math.Max(2.0, desiredSpeed); // Force movement speed while evading
+                }
+            }
+            else
+            {
+                // If the bot intends to be stopped, it is not stuck
+                m_StuckTimer = 0.0;
+                m_IsEvading = false;
+            }
+
+            m_LastPos = m_Bot.GetPosition();
             m_Stamina = Math.Clamp(m_Stamina, 0.0, 100.0);
 
+            m_Bot.SetOrientation(Vector(yaw, 0, 0));
+
+            // Handle Doors every 0.5s
+            m_DoorCheckTimer += 0.1;
+            if (m_DoorCheckTimer > 0.5)
+            {
+                CheckAndOpenDoors();
+                m_DoorCheckTimer = 0.0;
+            }
+
             inputController.OverrideMovementSpeed(true, desiredSpeed);
-            inputController.OverrideMovementAngle(true, 0.0); // Walk forward
+            inputController.OverrideMovementAngle(true, movementAngle);
         }
         else
         {
+            m_LastPos = m_Bot.GetPosition();
+            m_StuckTimer = 0.0;
+            m_IsEvading = false;
             // No path, turn to target and wait
             vector fallbackDir = (m_Target.GetPosition() - m_Bot.GetPosition()).Normalized();
             vector fallbackAngles = fallbackDir.VectorToAngles();
