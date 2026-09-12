@@ -291,7 +291,7 @@ class MoraleAIBotBase extends PlayerBase
 
     void SendDebugChat(string msg)
     {
-        if (GetGame().IsServer())
+        if (GetGame().IsServer() && MoraleAIConfig.Get().IsDebugMode)
         {
             array<Man> players = new array<Man>;
             GetGame().GetPlayers(players);

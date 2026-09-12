@@ -314,30 +314,59 @@ class MoraleAIBrain
             inputController.OverrideAimChangeX(true, 0.0);
             inputController.OverrideAimChangeY(true, 0.0);
 
-            // Burst fire logic
-            m_FireBurstTimer += 0.1;
-            if (m_ShotsToFire > 0)
+            // Burst fire logic - wait until weapon is actually raised
+            if (m_Bot.IsWeaponRaised())
             {
-                // Force fire via Weapon FSM Event Trigger
-                EntityAI entityInHands = m_Bot.GetHumanInventory().GetEntityInHands();
-                Weapon_Base weapon;
-                if (Class.CastTo(weapon, entityInHands))
+                m_FireBurstTimer += 0.1;
+                if (m_ShotsToFire > 0)
                 {
-                    if (weapon.CanFire())
+                    // Force fire via Weapon FSM Event Trigger
+                    EntityAI entityInHands = m_Bot.GetHumanInventory().GetEntityInHands();
+                    Weapon_Base weapon;
+                    if (Class.CastTo(weapon, entityInHands))
                     {
-                        // DayZ requires triggering the WeaponEventTrigger to simulate pulling the trigger
-                        weapon.ProcessWeaponEvent(new WeaponEventTrigger(m_Bot));
+                        if (weapon.CanFire())
+                        {
+                            if (weapon.IsChamberFull(0))
+                            {
+                                weapon.ProcessWeaponEvent(new WeaponEventTrigger(m_Bot));
+                                m_Bot.SendDebugChat("[MoraleAI] *BANG* Fired bullet!");
+                            }
+                            else
+                            {
+                                m_Bot.SendDebugChat("[MoraleAI] Click! Chamber is empty.");
+                                m_ShotsToFire = 0; // Abort burst
+                            }
+                        }
+                        else
+                        {
+                            m_Bot.SendDebugChat(string.Format("[MoraleAI] CanFire is FALSE! Weapon state: %1", weapon.IsDamageDestroyed()));
+                            m_ShotsToFire = 0;
+                        }
+                    }
+                    m_ShotsToFire--;
+                }
+                else
+                {
+                    // Start new burst every 2 seconds
+                    if (m_FireBurstTimer > 2.0)
+                    {
+                        m_ShotsToFire = Math.RandomIntInclusive(2, 5); // Fire 2 to 5 bullets
+                        m_FireBurstTimer = 0.0;
                     }
                 }
-                m_ShotsToFire--;
             }
             else
             {
-                // Start new burst every 2 seconds
-                if (m_FireBurstTimer > 2.0)
+                // Prevent log spam, only send occasionally
+                if (m_FireBurstTimer > 1.0)
                 {
-                    m_ShotsToFire = Math.RandomIntInclusive(2, 5); // Fire 2 to 5 bullets
+                    m_Bot.SendDebugChat("[MoraleAI] Waiting for weapon to raise...");
                     m_FireBurstTimer = 0.0;
+                }
+                else
+                {
+                    m_FireBurstTimer += 0.1;
                 }
             }
         }

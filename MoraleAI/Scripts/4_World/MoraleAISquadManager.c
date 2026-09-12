@@ -53,7 +53,12 @@ class MoraleAISquadManager
                 EntityAI weapon = EntityAI.Cast(bot.GetHumanInventory().CreateInHands("M4A1"));
                 if (weapon)
                 {
-                    weapon.GetInventory().CreateAttachment("Mag_STANAG_30Rnd");
+                    EntityAI magEnt = weapon.GetInventory().CreateAttachment("Mag_STANAG_30Rnd");
+                    Magazine mag;
+                    if (Class.CastTo(mag, magEnt))
+                    {
+                        mag.ServerSetAmmoMax();
+                    }
 
                     Weapon_Base wpnBase;
                     if (Class.CastTo(wpnBase, weapon))
