@@ -4,9 +4,20 @@ class MoraleAIBrain
     private PlayerBase m_Target;
     private float m_TimeSinceLastUpdate;
 
+    // Pathfinding
+    private ref array<vector> m_Path;
+    private int m_CurrentWaypointIndex;
+    private float m_PathfindTimer;
+    private ref PGFilter m_PathFilter;
+
     void MoraleAIBrain(MoraleAIBotBase bot)
     {
         m_Bot = bot;
+        m_Path = new array<vector>();
+
+        // Initialize Pathfinding Filter (allows NavMesh usage)
+        m_PathFilter = new PGFilter();
+        m_PathFilter.SetFlags(PGPolyFlags.WALK | PGPolyFlags.DOOR | PGPolyFlags.INSIDE, PGPolyFlags.NONE, PGPolyFlags.NONE);
     }
 
     void Update(float deltaTime)
@@ -58,60 +69,91 @@ class MoraleAIBrain
         if (!m_Target || !m_Target.IsAlive())
         {
             m_Target = NULL;
-            // Stop movement
             inputController.OverrideMovementSpeed(true, 0.0);
             return;
         }
 
-        // 1. Calculate direction and distance to target using standard vector math
-        vector targetDir = (m_Target.GetPosition() - m_Bot.GetPosition()).Normalized();
-        vector angles = targetDir.VectorToAngles();
-        float targetYaw = angles[0];
-        float distance = vector.Distance(m_Bot.GetPosition(), m_Target.GetPosition());
+        float distanceToTarget = vector.Distance(m_Bot.GetPosition(), m_Target.GetPosition());
 
-        // 2. Obstacle Avoidance (Raycast)
-        float finalYaw = targetYaw;
-        vector startPos = m_Bot.GetPosition();
-        startPos[1] = startPos[1] + 1.0; // Cast from chest height
-
-        // Raycast 3 meters forward
-        vector forwardDir = Vector(targetYaw, 0, 0).AnglesToVector();
-        vector endPos = startPos + (forwardDir * 3.0);
-
-        vector contactPos;
-        vector contactDir;
-        int contactComponent;
-
-        // Use DayZPhysics to cast a ray. Ignore the bot itself.
-        bool hit = DayZPhysics.RaycastRV(startPos, endPos, contactPos, contactDir, contactComponent, null, null, m_Bot, false, false, ObjIntersectIFire);
-
-        if (hit)
+        // Update Path every 1 second
+        m_PathfindTimer += 0.1; // Function called at 10Hz
+        if (m_PathfindTimer >= 1.0)
         {
-            // If an obstacle is detected directly ahead, steer 90 degrees to the right
-            // In a full system, we would cast multiple rays (left, right, forward) to find the best path.
-            // For V1, simple right-hand steering.
-            finalYaw = targetYaw + 90.0;
-
-            // Normalize yaw to stay within 0-360
-            if (finalYaw > 360.0)
-                finalYaw -= 360.0;
+            m_PathfindTimer = 0;
+            UpdatePathfinding(m_Target.GetPosition());
         }
 
-        // 3. Set Orientation (Face the target or the avoidance path)
-        vector newOrientation = Vector(finalYaw, 0, 0);
-        m_Bot.SetOrientation(newOrientation);
-
-        // 4. Move using InputController overrides
-        // Stop moving if we are within 3 meters AND we are looking at the target
-        // (if we are looking away due to avoidance, keep moving to clear the obstacle)
-        if (distance > 3.0 || hit)
+        // Move along the path
+        if (m_Path && m_Path.Count() > 0 && m_CurrentWaypointIndex < m_Path.Count())
         {
-            inputController.OverrideMovementSpeed(true, 2.0); // Jog
-            inputController.OverrideMovementAngle(true, 0.0); // Walk forward relative to current orientation
+            vector currentWaypoint = m_Path.Get(m_CurrentWaypointIndex);
+
+            // Ignore Y for distance checks to prevent getting stuck on slight elevations
+            vector botPosFlat = m_Bot.GetPosition(); botPosFlat[1] = 0;
+            vector wpFlat = currentWaypoint; wpFlat[1] = 0;
+
+            float distToWaypoint = vector.Distance(botPosFlat, wpFlat);
+
+            // If we reached the waypoint, move to the next
+            if (distToWaypoint < 0.5)
+            {
+                m_CurrentWaypointIndex++;
+                if (m_CurrentWaypointIndex >= m_Path.Count())
+                {
+                    // Reached end of path
+                    m_Path.Clear();
+                    inputController.OverrideMovementSpeed(true, 0.0);
+                    return;
+                }
+                currentWaypoint = m_Path.Get(m_CurrentWaypointIndex);
+            }
+
+            // Calculate direction to the current NavMesh waypoint
+            vector dirToWp = (currentWaypoint - m_Bot.GetPosition()).Normalized();
+            vector angles = dirToWp.VectorToAngles();
+            float yaw = angles[0];
+
+            m_Bot.SetOrientation(Vector(yaw, 0, 0));
+
+            // Dynamic Speed / Posture logic based on distance to the ultimate target
+            if (distanceToTarget > 20.0)
+            {
+                inputController.OverrideMovementSpeed(true, 3.0); // Sprint
+            }
+            else if (distanceToTarget > 5.0)
+            {
+                inputController.OverrideMovementSpeed(true, 2.0); // Jog
+            }
+            else if (distanceToTarget <= 5.0 && distanceToTarget > 3.0)
+            {
+                inputController.OverrideMovementSpeed(true, 1.0); // Walk
+            }
+            else
+            {
+                inputController.OverrideMovementSpeed(true, 0.0); // Stop/Shoot
+            }
+
+            inputController.OverrideMovementAngle(true, 0.0); // Walk forward
         }
         else
         {
-            inputController.OverrideMovementSpeed(true, 0.0); // Stop
+            // No path, just turn to target and stop (fallback)
+            vector fallbackDir = (m_Target.GetPosition() - m_Bot.GetPosition()).Normalized();
+            vector fallbackAngles = fallbackDir.VectorToAngles();
+            m_Bot.SetOrientation(Vector(fallbackAngles[0], 0, 0));
+            inputController.OverrideMovementSpeed(true, 0.0);
+        }
+    }
+
+    private void UpdatePathfinding(vector targetPos)
+    {
+        m_Path.Clear();
+        m_CurrentWaypointIndex = 0;
+
+        if (GetGame() && GetGame().GetWorld() && GetGame().GetWorld().GetAIWorld())
+        {
+            // Enfusion native NavMesh pathfinding
+            GetGame().GetWorld().GetAIWorld().FindPath(m_Bot.GetPosition(), targetPos, m_PathFilter, m_Path);
         }
     }
 }
