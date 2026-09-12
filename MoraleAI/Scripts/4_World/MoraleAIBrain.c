@@ -315,7 +315,7 @@ class MoraleAIBrain
             inputController.OverrideAimChangeY(true, 0.0);
 
             // Burst fire logic - wait until weapon is actually raised
-            if (m_Bot.IsWeaponRaised())
+            if (m_Bot.IsRaised())
             {
                 m_FireBurstTimer += 0.1;
                 if (m_ShotsToFire > 0)
